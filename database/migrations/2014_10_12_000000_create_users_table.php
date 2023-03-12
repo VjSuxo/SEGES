@@ -16,6 +16,11 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('apellido_Mat');
+            $table->string('apellido_Pat');
+            $table->integer('anio_Nac');
+            $table->string('genero');
+            $table->string('informacion');
             $table->string('password');
             //0 = admin, 1 = user, 2 = expositor, 4 = controlador, 3 = expositor
             $table->tinyInteger('role')->default(0);
