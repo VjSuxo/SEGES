@@ -18,8 +18,8 @@ return new class extends Migration
             $table->integer('capacidad');
             $table->string('estado');
 
-            $table->unsignedBigInteger('evento_id');
-            $table->foreign('evento_id')->references('id')->on('eventos');
+            //$table->unsignedBigInteger('evento_id');
+            //$table->foreign('evento_id')->references('id')->on('eventos');
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
