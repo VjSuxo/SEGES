@@ -20,8 +20,8 @@ return new class extends Migration
 
             $table->unsignedBigInteger('ambiente_id');
             $table->foreign('ambiente_id')->references('id')->on('ambientes');
-            $table->unsignedBigInteger('inventario_id');
-            $table->foreign('inventario_id')->references('id')->on('inventarios');
+            //$table->unsignedBigInteger('inventario_id');
+            //$table->foreign('inventario_id')->references('id')->on('inventarios');
 
             $table->timestamps();
         });

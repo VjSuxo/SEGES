@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 use  App\Http\Controllers\Admin\Admin_ImgController;
 /*
 |--------------------------------------------------------------------------
@@ -33,9 +34,12 @@ Route::middleware(['auth','user-role:expositor'])->group(function()
 // Route Admin
 Route::middleware(['auth','user-role:admin'])->group(function()
 {
-    Route::get("/admin/home",[HomeController::class, 'adminHome'])->name("admin.home");
+    Route::get("/admin/home",[AdminController::class, 'adminHome'])->name("admin.home");
     //Route::get("/admin/home",[Admin_ImgController::class, 'index'])->name("admin.imagenes");
-
+    Route::get("/admin/usuarios",[AdminController::class, 'indexUsuarios'])->name("admin.usuarios");
+    Route::get("/admin/eventos",[AdminController::class, 'indexEventos'])->name("admin.eventos");
+    Route::get("/admin/pagina_web",[AdminController::class, 'indexPagina_Web'])->name("admin.pagina_web");
+    Route::get("/admin/ambientes",[AdminController::class, 'indexAmbiente'])->name("admin.ambiente");
 });
 
 // Route controlador

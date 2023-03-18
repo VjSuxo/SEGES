@@ -1,0 +1,12 @@
+.formulario-h{
+    display: flex;
+    justify-content: space-between; 
+    margin-top: 10%;
+}
+
+
+
+.btn{
+    width: 50%; 
+    margin-left: 30%;
+}

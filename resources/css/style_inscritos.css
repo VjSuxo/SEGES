@@ -1,0 +1,15 @@
+.lado{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3%;
+}
+
+.subTexto{
+    color: white;
+}
+
+.botones{
+    width: 35%;
+    height: 20%;
+    margin-left: 1%;
+}

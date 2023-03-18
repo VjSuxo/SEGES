@@ -1,25 +1,67 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    <h1>ADMIN</h1>
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                     {{ Auth::user()->name }}
-                            <br>
-                            {{$msg}}
-                </div>
+<x-layouts.app >
+    <div class="navegadorUsuario">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <div class="activado">
+              <a class="nav-link" aria-current="page" href="/administrador/index.html">Inicio</a>
             </div>
-        </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.usuarios') }}">Usuarios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"  href="/administrador/eventos.html">Eventos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"  href="/administrador/pagina_web.html">Pagina Web</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"  href="/administrador/ambiente.html">Ambiente</a>
+          </li>
+        </ul>
     </div>
-</div>
-@endsection
+
+    <div class="container General">
+        <h1>ADMINISTRADOR</h1>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+          <div class="col">
+            <div class="card h-100">
+              <img src="/storage/icons/icon_Usuario.png" class="card-img-top" alt="imagen usuario">
+              <div class="card-body">
+                <a href="{{ route('admin.usuarios') }}"><h5 class="card-title">USUARIOS</h5></a>
+              </div>
+
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <img src="/storage/icons/icon_evento.png" class="card-img-top" alt="...">
+              <div class="card-body">
+                <a href="{{ route('admin.eventos') }}"><h5 class="card-title">EVENTOS</h5></a>
+              </div>
+
+            </div>
+
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <img src="/storage/icons/diseno-web.png" class="card-img-top" alt="...">
+              <div class="card-body">
+                <a href="{{ route('admin.pagina_web') }}"><h5 class="card-title">PAGINA WEB</h5></a>
+              </div>
+
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <img src="/storage/icons/colegio.png" class="card-img-top" alt="...">
+              <div class="card-body">
+                <a href="{{ route('admin.ambiente') }}"><h5 class="card-title">AMBIENTES</h5></a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+</x-layouts>
