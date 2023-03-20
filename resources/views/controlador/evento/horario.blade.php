@@ -1,3 +1,95 @@
+<x-layouts.app>
+    @vite(['resources/css/style_Inputs.css','resources/css/style_calendar.css',])
+    <div class="contenedor">
+        <div class="navegadorUsuario">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <div>
+                <a class="nav-link" aria-current="page" href="{{ route('controlador.evento') }}">Infraestructura</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('controlador.evento_ambiente') }}">Ambiente</a>
+            </li>
+            <li class="nav-item activado"">
+                <a class="nav-link" href="{{ route('controlador.evento_horario') }}">Horario</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('controlador.evento_reservas_inscripcion') }}">Reservas | Inscripciones</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('controlador.evento_asistencia') }}">Asistencia</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('controlador.evento_certificados') }}">Certificados</a>
+              </li>
+          </ul>
+        </div>
+
+        <div class="container General border">
+            <h1 class="titulo">EVENTO 1</h1>
+
+         <div class="paralelo">
+            <div class="light">
+
+                <div class="calendar">
+                    <div class="calendar-header">
+                        <span class="month-picker" id="month-picker">February</span>
+                        <div class="year-picker">
+                            <span class="year-change" id="prev-year">
+                                <pre><</pre>
+                            </span>
+                            <span id="year">2021</span>
+                            <span class="year-change" id="next-year">
+                                <pre>></pre>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="calendar-body">
+                        <div class="calendar-week-day">
+                            <div>Sun</div>
+                            <div>Mon</div>
+                            <div>Tue</div>
+                            <div>Wed</div>
+                            <div>Thu</div>
+                            <div>Fri</div>
+                            <div>Sat</div>
+                        </div>
+                        <div class="calendar-days" ></div>
+                        <button class="btn btn-primary m-4" id="save-button">Guardar</button>
+                    </div>
+                    <div class="month-list"></div>
+                </div>
+
+            </div>
+
+            <div class="formulario">
+                <label for="" class="formulario-h">
+                <h3>Cantidad de dias :  </h3>
+                <input type="text">
+                </label>
+                 <label for="" class="formulario-h">
+                <h3>Dias :</h3>
+                <input type="text">
+                </label>
+                <label for="" class="formulario-h">
+                <h3>Hora Inicio :</h3>
+                <input type="text">
+                </label>
+                <label for="" class="formulario-h">
+                <h3>Hora Fin :</h3>
+                <input type="text">
+                </label>
+                <label for="" class="formulario-h">
+                <h3>Tiempo :</h3>
+                <input type="text">
+                </label>
+
+                <br><br>
+                <button type="button" class="btn btn-primary">Finalizar</button>
+            </div>
+            <script>
+
 let calendar = document.querySelector('.calendar')
 
 const month_names = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -186,3 +278,19 @@ function saveMarkedDays() {
       tablaDiasSeleccionados.appendChild(fila);
     });
   }
+
+
+            </script>
+
+         </div>
+
+          </div>
+        </div>
+
+    </div>
+
+
+
+
+
+</x-layouts.app>

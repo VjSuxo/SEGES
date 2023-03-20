@@ -6,5 +6,39 @@ use Illuminate\Http\Request;
 
 class ControladorController extends Controller
 {
-    //
+    public function controladorHome()
+    {
+        return view('controlador/home',["msg"=>"Hello! I am controlador"]);
+    }
+
+    public function controladorEvento()
+    {
+        return view('controlador/evento/index',["msg"=>"Hello! I am controlador"]);
+    }
+
+    public function controladorEvento_Horario()
+    {
+        return view('controlador/evento/horario',["msg"=>"Hello! I am controlador"]);
+    }
+
+    public function controladorEvento_Asistencia()
+    {
+        return view('controlador/evento/asistencia',["msg"=>"Hello! I am controlador"]);
+    }
+
+    public function controladorEvento_Ambiente()
+    {
+        return view('controlador/evento/ambiente',["msg"=>"Hello! I am controlador"]);
+    }
+
+    public function controladorEvento_Certificados()
+    {
+        return view('controlador/evento/certificados',["msg"=>"Hello! I am controlador"]);
+    }
+
+    public function controladorEvento_Reservas_Inscrip()
+    {
+        return view('controlador/evento/reservas_inscripciones',["msg"=>"Hello! I am controlador"]);
+    }
+
 }
