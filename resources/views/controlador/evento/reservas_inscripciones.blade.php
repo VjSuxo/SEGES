@@ -36,7 +36,7 @@
                   <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
                   <label class="form-check-label" for="inlineRadio2"><p>INSCRIPCION</p></label>
                 </div>
-              </div>
+            </div>
 
             <div class="lado">
                 <table class="table">

@@ -1,5 +1,5 @@
 <x-layouts.app >
-    @vite(['resources/css/style_cardsMaterial.css'])
+    @vite(['resources/css/style_cardsMaterial.css','resources/css/style_inscritos.css'])
     <div class="contenedor">
         <div class="navegadorUsuario">
             <ul class="nav nav-tabs">
@@ -15,8 +15,13 @@
                   <a class="nav-link" href="{{  route('expositor.eventoMaterial') }}">Material</a>
                 </li>
             </ul>
-          </div>
+        </div>
+
         <div class="container General">
+            <div class="botones lado">
+                <h4 class="subTexto">Subir Material :</h4>
+                <button type="button" class="btn btn-primary">Subir</button>
+            </div>
           <div class="container General">
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 <div class="col">
@@ -86,6 +91,7 @@
               </div>
           </div>
 
+        </div>
         </div>
 
       </div>
