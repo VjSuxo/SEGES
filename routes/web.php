@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ControladorController;
+use App\Http\Controllers\ExpositorController;
 use  App\Http\Controllers\Admin\Admin_ImgController;
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +31,10 @@ Route::middleware(['auth','user-role:user'])->group(function()
 // Route Expositor
 Route::middleware(['auth','user-role:expositor'])->group(function()
 {
-    Route::get("/expositor/home",[HomeController::class, 'expositorHome'])->name("expositor.home");
+    Route::get("/expositor/home",[ExpositorController::class, 'expositorHome'])->name("expositor.home");
+
+    Route::get("/expositor/evento/index",[ExpositorController::class, 'expositorEvento'])->name("expositor.eventoIndex");
+    Route::get("/expositor/evento/Material",[ExpositorController::class, 'expositorMaterial'])->name("expositor.eventoMaterial");
 });
 // Route Admin
 Route::middleware(['auth','user-role:admin'])->group(function()
@@ -47,10 +51,10 @@ Route::middleware(['auth','user-role:admin'])->group(function()
 Route::middleware(['auth','user-role:controlador'])->group(function()
 {
     Route::get("/controlador/home",[ControladorController::class, 'controladorHome'])->name("controlador.home");
-
+    Route::get("/controlador/ambientes",[ControladorController::class, 'controladorAmbientes'])->name("controlador.ambientes");
+    Route::get("/controlador/ambientesinfo",[ControladorController::class, 'controladorAmbientesInfo'])->name("controlador.ambientesInfo");
     //crear un grup de eventos
     Route::get("/controlador/evento/index",[ControladorController::class, 'controladorEvento'])->name("controlador.evento");
-    Route::get("/controlador/evento/ambiente",[ControladorController::class, 'controladorEvento_Ambiente'])->name("controlador.evento_ambiente");
     Route::get("/controlador/evento/horario",[ControladorController::class, 'controladorEvento_Horario'])->name("controlador.evento_horario");
     Route::get("/controlador/evento/asistencia",[ControladorController::class, 'controladorEvento_Asistencia'])->name("controlador.evento_asistencia");
     Route::get("/controlador/evento/certificados",[ControladorController::class, 'controladorEvento_Certificados'])->name("controlador.evento_certificados");

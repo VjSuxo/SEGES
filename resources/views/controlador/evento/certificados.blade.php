@@ -3,12 +3,12 @@
         <div class="navegadorUsuario">
           <ul class="nav nav-tabs">
             <li class="nav-item">
+                <a class="nav-link" href="{{ route('controlador.home') }}">Otros Eventos</a>
+              </li>
+            <li class="nav-item">
               <div class="">
                 <a class="nav-link" aria-current="page" href="{{ route('controlador.evento') }}">Infraestructura</a>
               </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('controlador.evento_ambiente') }}">Ambiente</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('controlador.evento_horario') }}">Horario</a>
@@ -23,8 +23,9 @@
                 <a class="nav-link" href="{{ route('controlador.evento_certificados') }}">Certificados</a>
               </li>
           </ul>
+        </div>
 
-          <div class="container General">
+        <div class="container General">
             <table class="table">
                 <thead>
                   <tr>
@@ -67,8 +68,6 @@
                   </tr>
                 </tbody>
               </table>
-        </div>
-
         </div>
     </div>
 </x-layouts.app>

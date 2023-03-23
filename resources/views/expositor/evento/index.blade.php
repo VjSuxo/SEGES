@@ -3,13 +3,16 @@
         <div class="navegadorUsuario">
           <ul class="nav nav-tabs">
             <li class="nav-item">
-              <div class="activado">
-                <a class="nav-link" aria-current="page" href="{{  route('controlador.home') }}">Eventos</a>
+              <div class="">
+                <a class="nav-link" aria-current="page" href="{{  route('expositor.home') }}">Eventos</a>
               </div>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{  route('controlador.ambientes') }}">Ambientes</a>
+            <li class="nav-item activado">
+              <a class="nav-link" href="{{  route('expositor.eventoIndex') }}">InformacionEvento</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{  route('expositor.eventoMaterial') }}">Material</a>
+              </li>
           </ul>
         </div>
         <div class="container General">
@@ -19,7 +22,6 @@
                   <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Nombre</th>
-                    <th scope="col">Capacidad</th>
                     <th scope="col">Estado</th>
                     <th scope="col">Cantidad de Clases</th>
                     <th scope="col">Opcion</th>
@@ -29,26 +31,23 @@
                   <tr>
                     <th scope="row">1</th>
                     <td>Evento 1</td>
-                    <td>50</td>
-                    <td>Reserva</td>
-                    <td>10</td>
+                    <td>en proceso</td>
+                    <td>5</td>
                     <td><a type="button"  href="{{ route('controlador.evento') }}" class="btn btn-primary">Ver</a></td>
                   </tr>
                   <tr>
                     <th scope="row">1</th>
                     <td>Evento 1</td>
-                    <td>50</td>
-                    <td>Reserva</td>
-                    <td>10</td>
-                    <td><a type="button" href="{{ route('controlador.evento') }}" class="btn btn-primary">Ver</a></td>
+                    <td>en proceso</td>
+                    <td>5</td>
+                    <td><a type="button"  href="{{ route('controlador.evento') }}" class="btn btn-primary">Ver</a></td>
                   </tr>
                   <tr>
                     <th scope="row">1</th>
                     <td>Evento 1</td>
-                    <td>50</td>
-                    <td>Reserva</td>
-                    <td>10</td>
-                    <td><a type="button" href="{{ route('controlador.evento') }}" class="btn btn-primary">Ver</a></td>
+                    <td>en proceso</td>
+                    <td>5</td>
+                    <td><a type="button"  href="{{ route('controlador.evento') }}" class="btn btn-primary">Ver</a></td>
                   </tr>
                 </tbody>
               </table>

@@ -26,9 +26,14 @@ class ControladorController extends Controller
         return view('controlador/evento/asistencia',["msg"=>"Hello! I am controlador"]);
     }
 
-    public function controladorEvento_Ambiente()
+    public function controladorAmbientes()
     {
-        return view('controlador/evento/ambiente',["msg"=>"Hello! I am controlador"]);
+        return view('/controlador/ambientes',["msg"=>"Hello! I am controlador"]);
+    }
+
+    public function controladorAmbientesInfo()
+    {
+        return view('/controlador/ambientesinfo',["msg"=>"Hello! I am controlador"]);
     }
 
     public function controladorEvento_Certificados()
