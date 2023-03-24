@@ -1,11 +1,26 @@
-.cabecera{
-    display: flex;
-    justify-content: space-between;
-    border-radius: 20px;
-    padding: 15px;
-    background: rgba(161,225,250,0.4);
+.bloques{
+
+    position: relative;
+    margin-top: 10px;
+
 }
 
-.cuerpo{
-    background: black;
+.infPrincipal{
+    background:  #0000ff;
+    color: white;
 }
+
+.infDetallada{
+    position: absolute;
+    top: 10px;
+    left: 85px;
+    width: inherit;
+    background: #00a0a0;
+    color: white;
+}
+
+.infVariada{
+    background: #ffc0c0;
+    color: white;
+}
+
