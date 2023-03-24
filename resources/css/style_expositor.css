@@ -1,26 +1,63 @@
-.bloques{
+.parent {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    }
+    
+    .div1 { 
+        grid-area: 1 / 1 / 4 / 6;
+        background: rgba(116, 189, 224, 1); 
+    }
+    .div2 { grid-area: 1 / 1 / 4 / 4; }
+    .div3 { 
+        grid-area: 2 / 5 / 6 / 6; 
+        -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+        box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+        margin-right: 20px;
+    }
 
-    position: relative;
-    margin-top: 10px;
+    .div3 .card{
+        border-radius: 10px;
+        background: rgba(161, 225, 250, 1); 
+    }
 
-}
+    .div3 .cb-Btn{
+        margin-top: 10px;
+        margin-bottom: 35px;
+    }
 
-.infPrincipal{
-    background:  #0000ff;
-    color: white;
-}
+    .div3 .btn{
+        -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    }
 
-.infDetallada{
-    position: absolute;
-    top: 10px;
-    left: 85px;
-    width: inherit;
-    background: #00a0a0;
-    color: white;
-}
+    .div3 .listaG{  
+        border-radius: 15px;
+        padding: 20px;
+        -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    }
 
-.infVariada{
-    background: #ffc0c0;
-    color: white;
-}
+    .div3 .lista{
+        background: rgba(161, 225, 250, 1);
+    }
 
+    .div4 { grid-area: 4 / 1 / 6 / 4; }
+
+    .div4 .contenido{
+        margin-top: 10px;
+    }
+
+    .div4 .contenido .card{
+        background: rgba(116, 189, 224, 0.1);
+        padding: 10px;
+    }
+    
+    .div4 .contenido .card  h4{
+        color: white;
+    }
