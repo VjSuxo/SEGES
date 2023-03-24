@@ -16,24 +16,17 @@
               </li>
           </ul>
         </div>
-        <div class="container General">
-          <div class="cabecera">
-            <div class="contenido">
-              <h1>Nombre dek ,,,,</h1>
-              <p></p>
+        <div class="container border bloques">
+            <div class="infPrincipal">
+                <h1>Lorem ipsim dolor sit Lorem ipsim dolor sitLorem ipsim dolor sit</h1>
+                <p>Lorem ipsim dolor sit Lorem ipsim dolor sit Lorem ipsim dolor sit Lorem ipsim dolor sit Lorem ipsim dolor sit Lorem ipsim dolor sit</p>
             </div>
-            <div class="card" style="width: 18rem;">
-              <img src="/storage/icons/icon_Usuario.png" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Editar Informacion</a>
-              </div>
+            <div class="infDetallada">
+                <h1>Card</h1>
             </div>
-          </div>
-          <div class="cuerpo">
-            
-          </div>
+            <div class="infVariada">
+                <h1>Exposiutro</h1>
+            </div>
         </div>
 
       </div>
