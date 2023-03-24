@@ -1,4 +1,5 @@
 <x-layouts.app >
+  @vite(['resources/css/style_expositor.css'])
     <div class="contenedor">
         <div class="navegadorUsuario">
           <ul class="nav nav-tabs">
@@ -16,43 +17,23 @@
           </ul>
         </div>
         <div class="container General">
-          <div class="container General">
-            <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Cantidad de Clases</th>
-                    <th scope="col">Opcion</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Evento 1</td>
-                    <td>en proceso</td>
-                    <td>5</td>
-                    <td><a type="button"  href="{{ route('controlador.evento') }}" class="btn btn-primary">Ver</a></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Evento 1</td>
-                    <td>en proceso</td>
-                    <td>5</td>
-                    <td><a type="button"  href="{{ route('controlador.evento') }}" class="btn btn-primary">Ver</a></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Evento 1</td>
-                    <td>en proceso</td>
-                    <td>5</td>
-                    <td><a type="button"  href="{{ route('controlador.evento') }}" class="btn btn-primary">Ver</a></td>
-                  </tr>
-                </tbody>
-              </table>
-        </div>
-
+          <div class="cabecera">
+            <div class="contenido">
+              <h1>Nombre dek ,,,,</h1>
+              <p></p>
+            </div>
+            <div class="card" style="width: 18rem;">
+              <img src="/storage/icons/icon_Usuario.png" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Editar Informacion</a>
+              </div>
+            </div>
+          </div>
+          <div class="cuerpo">
+            
+          </div>
         </div>
 
       </div>

@@ -1,0 +1,11 @@
+.cabecera{
+    display: flex;
+    justify-content: space-between;
+    border-radius: 20px;
+    padding: 15px;
+    background: rgba(161,225,250,0.4);
+}
+
+.cuerpo{
+    background: black;
+}
