@@ -20,10 +20,12 @@
           <div class="parent">
             <div class="div1"> </div>
             <div class="div2">
-              <h1>Lorem Ipsun Dolor Is Amet</h1>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis ea natus harum magnam tempora sequi a expedita labore minus doloribus incidunt alias quae maxime ad voluptatum saepe, iure vero quo!</p>
+              <div class="contenido">
+                    <h1>Lorem Ipsun Dolor Is Amet</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis ea natus harum magnam tempora sequi a expedita labore minus doloribus incidunt alias quae maxime ad voluptatum saepe, iure vero quo!</p>
+              </div>
             </div>
-            <div class="div3"> 
+            <div class="div3">
               <div class="card" style="width: 18rem;">
                 <img src="/storage/imagenes/fondo-Evento1.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -48,26 +50,27 @@
                 <div class="card mb-3" style="max-width: 540px;">
                   <div class="row g-0">
                     <div class="col-md-4">
-                      <img src="/storage/icons/icon_user.png" class="img-fluid rounded-start" alt="...">
+                      <img src="/storage/icons/icon_user.png" class="bordeImg img-fluid rounded-start" alt="...">
                     </div>
                     <div class="col-md-8">
                       <div class="card-body">
                         <h4 class="card-title">Nombre Expositor</h4>
                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <a href="#" class=" btn btn-primary">Ver Informaicons</a>
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="cuerpo">
-                  
+                    <h1>Preguntas Frecuentes</h1>
                 </div>
               </div>
              </div>
           </div>
-         
+
         </div>
-        
+
 
       </div>
 </x-layouts>
