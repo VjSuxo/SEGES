@@ -17,25 +17,29 @@
           </ul>
         </div>
         <div class="container border bloques">
+            <button type="button" class="btn btn-primary">Edtiar</button>
           <div class="parent">
-            <div class="div1"> </div>
+            <div class="div1">
+
+            </div>
             <div class="div2">
               <div class="contenido">
                     <h1>Lorem Ipsun Dolor Is Amet</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis ea natus harum magnam tempora sequi a expedita labore minus doloribus incidunt alias quae maxime ad voluptatum saepe, iure vero quo!</p>
+
               </div>
             </div>
             <div class="div3">
               <div class="card" style="width: 18rem;">
-                <img src="/storage/imagenes/fondo-Evento1.jpg" class="card-img-top" alt="...">
+                <img src="/storage/imagenes/fondo-Evento1.jpg" class="card-img-top" alt="foto del evento">
                 <div class="card-body">
                   <div class="cb-Btn position-relative">
-                    <a href="#" class=" position-absolute top-100 start-50 translate-middle mt-1 btn btn-primary">Incribirme</a>
+                    <a href="#" class=" position-absolute top-100 start-50 translate-middle mt-1 btn btn-primary">Inscribirme</a>
                   </div>
                   <div class="listaG border">
                     <h5>Incluye :</h5>
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item lista">An item</li>
+                      <li class="list-group-item lista">An item   </li>
                       <li class="list-group-item lista">A second item</li>
                       <li class="list-group-item lista">A third item</li>
                       <li class="list-group-item lista">A fourth item</li>
@@ -66,7 +70,21 @@
                     <h1>Preguntas Frecuentes</h1>
                 </div>
               </div>
-             </div>
+            </div>
+            <div class="div5">
+                <h1>Comentarios</h1>
+                <div class="comentarios">
+                    <ul class="list-group">
+                        <li class="list-group-item">An item</li>
+                        <li class="list-group-item">A second item</li>
+                        <li class="list-group-item">A third item</li>
+                        <li class="list-group-item">A fourth item</li>
+                        <li class="list-group-item">And a fifth one</li>
+                    </ul>
+                    <button type="button" class="btn btn-primary">Ver mas</button>
+                </div>
+
+            </div>
           </div>
 
         </div>
