@@ -26,7 +26,8 @@ Auth::routes();
 // Route User
 Route::middleware(['auth','user-role:user'])->group(function()
 {
-    Route::get("/user//home",[HomeController::class, 'userHome'])->name("user.home");
+    Route::get("/user/home",[HomeController::class, 'userHome'])->name("user.home");
+    Route::get("/home",[HomeController::class, 'userHome'])->name("home");
 });
 // Route Expositor
 Route::middleware(['auth','user-role:expositor'])->group(function()
