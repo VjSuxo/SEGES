@@ -18,6 +18,7 @@ export default defineConfig({
                 'resources/css/style_login.css',
                 'resources/css/style_register.css',
                 'resources/css/style_expositor.css',
+                'resources/css/style_usuario.css',
                 'resources/js/calendar.js',
             ],
             refresh: true,

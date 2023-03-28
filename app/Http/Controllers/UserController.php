@@ -18,6 +18,11 @@ class UserController extends Controller
         return view('admin.user.index',compact('users'));
     }
 
+    public function userEventos()
+    {
+        return view('/user/misEventos');
+    }
+
     /**
      * Show the form for creating a new resource.
      */

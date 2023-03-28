@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ControladorController;
 use App\Http\Controllers\ExpositorController;
@@ -26,7 +27,9 @@ Auth::routes();
 // Route User
 Route::middleware(['auth','user-role:user'])->group(function()
 {
-    Route::get("/user//home",[HomeController::class, 'userHome'])->name("user.home");
+    Route::get("/user/home",[HomeController::class, 'userHome'])->name("user.home");
+    Route::get("/user/misEventos",[UserController::class, 'userEventos'])->name("user.misEventos");
+    Route::get("/home",[HomeController::class, 'userHome'])->name("home");
 });
 // Route Expositor
 Route::middleware(['auth','user-role:expositor'])->group(function()

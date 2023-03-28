@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -40,11 +40,17 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+
+
+
         $input = $request->all();
+
+
 
         $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required',
+           /// 'g-recaptcha-response' => ['required',new \App\Rules\Recaptcha]
         ]);
 
         if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
