@@ -29,6 +29,7 @@ Route::middleware(['auth','user-role:user'])->group(function()
 {
     Route::get("/user/home",[HomeController::class, 'userHome'])->name("user.home");
     Route::get("/user/misEventos",[UserController::class, 'userEventos'])->name("user.misEventos");
+    Route::get("/user/evento/index",[UserController::class, 'userEventosIndex'])->name("user.evento-index");
     Route::get("/home",[HomeController::class, 'userHome'])->name("home");
 });
 // Route Expositor
