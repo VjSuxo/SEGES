@@ -64,7 +64,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
@@ -73,5 +74,11 @@ class RegisterController extends Controller
             'anio_Nac' => $data['anioNac'],
             'genero' => $data['genero'],
         ]);
+
+        Mail::to($user->email)->send(new ConfirmacionRegistro($user));
+
+        return $user;
+
+        
     }
 }

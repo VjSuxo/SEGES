@@ -49,8 +49,8 @@
             </div>
 
             <div class="formu">
-                <form action="" class="formulario">
-
+                <form method="POST" action="{{ route('register') }}" class="formulario">
+                    @csrf
                 @include('components.layouts.formulario')
 
                 <!-- Grupo: Titulo -->

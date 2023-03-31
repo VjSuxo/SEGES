@@ -50,7 +50,7 @@ class LoginController extends Controller
         $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required',
-           /// 'g-recaptcha-response' => ['required',new \App\Rules\Recaptcha]
+            'g-recaptcha-response' => ['required',new \App\Rules\Recaptcha]
         ]);
 
         if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
