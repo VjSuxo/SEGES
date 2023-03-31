@@ -22,10 +22,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+
+Auth::routes(['verify' => true]);
 //0 = admin, 1 = user,  2 = controlador, 3 = expositor
 // Route User
-Route::middleware(['auth','user-role:user'])->group(function()
+Route::middleware(['auth','user-role:user','verified'])->group(function()
 {
     Route::get("/user/home",[HomeController::class, 'userHome'])->name("user.home");
     Route::get("/user/misEventos",[UserController::class, 'userEventos'])->name("user.misEventos");

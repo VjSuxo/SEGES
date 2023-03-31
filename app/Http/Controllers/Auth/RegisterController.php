@@ -63,7 +63,7 @@ class RegisterController extends Controller
      * @return \App\Models\User
      */
     protected function create(array $data)
-    {
+    {        
 
         $user = User::create([
             'name' => $data['name'],
@@ -75,8 +75,7 @@ class RegisterController extends Controller
             'genero' => $data['genero'],
         ]);
 
-        Mail::to($user->email)->send(new ConfirmacionRegistro($user));
-
+      
         return $user;
 
         

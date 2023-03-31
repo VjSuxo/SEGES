@@ -20,10 +20,10 @@ return new class extends Migration
             $table->string('apellido_Pat');
             $table->integer('anio_Nac');
             $table->string('genero');
-            $table->string('informacion');
+            $table->string('informacion')->nullable();
             $table->string('password');
             //0 = admin, 1 = user, 2 = expositor, 4 = controlador, 3 = expositor
-            $table->tinyInteger('role')->default(0);
+            $table->tinyInteger('role')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });
