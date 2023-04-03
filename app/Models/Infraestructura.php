@@ -10,11 +10,8 @@ class Infraestructura extends Model
     use HasFactory;
     protected $table = 'infraestructuras';
     protected $fillable = [
-        'nombre',
-        'capacidad',
-        'estado',
+        'ambiente_id',
         'tema_id',
-        'controlador_id',
     ];
 
     public function tema()
@@ -27,10 +24,12 @@ class Infraestructura extends Model
         return $this->hasMany(Reserva::class);
     }
 
-    public function controlador()
+    public function ambiente()
     {
-        return $this->belongsTo(Controlador::class);
+        return $this->belongsToMany(Ambiente::class);
     }
+
+
 
 }
 

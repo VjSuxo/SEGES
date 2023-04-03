@@ -26,33 +26,23 @@
               <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Nombre</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">tipo</th>
                 <th scope="col">Capacidad</th>
-                <th scope="col">Estado</th>
                 <th scope="col">Cantidad de Clases</th>
+                <th scope="col">Ver Temas</th>
+                <th scope="col">Ver Contenido</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Evento 1</td>
-                <td>50</td>
-                <td>Reserva</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <th scope="row">1</th>
-                <td>Evento 1</td>
-                <td>50</td>
-                <td>Reserva</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <th scope="row">1</th>
-                <td>Evento 1</td>
-                <td>50</td>
-                <td>Reserva</td>
-                <td>10</td>
-              </tr>
+                @foreach ( $eventos as $evento )
+                <tr>
+                    <th scope="row">{{$evento->id}}</th>
+                    <th>{{$evento->nombre}}</th>
+                    <th>{{$evento->descripcion}}</th>
+                    <th>{{$evento->tipo}}</th>
+                </tr>
+                @endforeach
             </tbody>
           </table>
     </div>

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Evento;
-use App\Http\Requests\StoreEventoRequest;
-use App\Http\Requests\UpdateEventoRequest;
+use App\Models\Ambiente;
+use App\Http\Requests\StoreAmbienteRequest;
+use App\Http\Requests\UpdateAmbienteRequest;
 
-class EventoController extends Controller
+class AmbienteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,6 @@ class EventoController extends Controller
     {
         //
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -28,7 +27,7 @@ class EventoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreEventoRequest $request)
+    public function store(StoreAmbienteRequest $request)
     {
         //
     }
@@ -36,7 +35,7 @@ class EventoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Evento $evento)
+    public function show(Ambiente $ambiente)
     {
         //
     }
@@ -44,7 +43,7 @@ class EventoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Evento $evento)
+    public function edit(Ambiente $ambiente)
     {
         //
     }
@@ -52,7 +51,7 @@ class EventoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateEventoRequest $request, Evento $evento)
+    public function update(UpdateAmbienteRequest $request, Ambiente $ambiente)
     {
         //
     }
@@ -60,7 +59,7 @@ class EventoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Evento $evento)
+    public function destroy(Ambiente $ambiente)
     {
         //
     }

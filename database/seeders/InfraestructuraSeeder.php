@@ -16,15 +16,36 @@ class InfraestructuraSeeder extends Seeder
     public function run(): void
     {
         //
-        $evento = Evento::where('nombre','lectura Mediaval')->firstOrFail();
-        $tema =  $evento->temas()->where('nombre', 'Introducción')->firstOrFail();
-        $controlador = Controlador::where('usuario_id', 32)->first();
+
+
         Infraestructura::create([
-            'nombre' => 'Amarillo',
-            'capacidad'=> 50,
-            'estado' => 'ocupado',
-            'tema_id' => $tema->id,
-            'controlador_id' => $controlador->id,
+            'ambiente_id' => 1,
+            'tema_id' => 1,
+
+        ]);
+
+        Infraestructura::create([
+            'ambiente_id' => 1,
+            'tema_id' => 2,
+
+        ]);
+        Infraestructura::create([
+            'ambiente_id' => 1,
+            'tema_id' => 3,
+
+        ]);
+
+        Infraestructura::create([
+            'ambiente_id' => 2,
+            'tema_id' => 4,
+        ]);
+        Infraestructura::create([
+            'ambiente_id' => 2,
+            'tema_id' => 5,
+        ]);
+        Infraestructura::create([
+            'ambiente_id' => 2,
+            'tema_id' => 6,
         ]);
     }
 }

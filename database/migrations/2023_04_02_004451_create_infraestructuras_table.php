@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('infraestructuras', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->integer('capacidad');
-            $table->string('estado')->default('disponible');
+
+            $table->unsignedBigInteger('ambiente_id')->nullable();
+            $table->foreign('ambiente_id')->references('id')->on('ambientes');
             $table->unsignedBigInteger('tema_id')->nullable();
             $table->foreign('tema_id')->references('id')->on('temas');
-            $table->unsignedBigInteger('controlador_id')->nullable();
-            $table->foreign('controlador_id')->references('id')->on('controladores');
+
             $table->timestamps();
         });
 

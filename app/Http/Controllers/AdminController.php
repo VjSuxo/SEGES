@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 //Importando modelos
 use App\Models\User;
+use App\Models\Evento;
+use App\Models\Ambiente;
+use App\Models\Infraestructura;
 
 use Illuminate\Http\Request;
 
@@ -23,8 +26,17 @@ class AdminController extends Controller
 
     public function indexEventos()
     {
-        return view('admin/eventos',["msg"=>"Hello! I am admin"]);
+        $eventos = Evento::get();
+        $evento = Evento::with('temas.contenido', 'temas.infraestructura')->find(1);
+        $contenido = $evento->temas[0]->contenido;
+        $infraestructura = $evento->temas[0]->infraestructura;
+        //$nombre_contenido = $contenido->nombre;
+        //$nombre_infraestructura = $infraestructura->id_ambiente;
+        return $infraestructura;
+        return view('admin/eventos',['eventos'=>$eventos]);
     }
+
+
 
     public function indexPagina_web()
     {

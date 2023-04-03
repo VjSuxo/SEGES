@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EventoController;
 use App\Http\Controllers\ControladorController;
 use App\Http\Controllers\ExpositorController;
 use  App\Http\Controllers\Admin\Admin_ImgController;
@@ -46,13 +47,18 @@ Route::middleware(['auth','user-role:admin'])->group(function()
 {
     Route::controller(AdminController::class)->group(function(){
         Route::get("/admin/usuarios",'indexUsuarios')->name("admin.usuarios");
+        Route::get("/admin/eventos",[AdminController::class, 'indexEventos'])->name("admin.eventos");
     });
     Route::get("/admin/home",[AdminController::class, 'adminHome'])->name("admin.home");
     //Route::get("/admin/home",[Admin_ImgController::class, 'index'])->name("admin.imagenes");
 
-    Route::get("/admin/eventos",[AdminController::class, 'indexEventos'])->name("admin.eventos");
+
     Route::get("/admin/pagina_web",[AdminController::class, 'indexPagina_Web'])->name("admin.pagina_web");
     Route::get("/admin/ambientes",[AdminController::class, 'indexAmbiente'])->name("admin.ambiente");
+
+
+
+
 });
 
 // Route controlador
