@@ -11,7 +11,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,57 +22,60 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-        'name'=> 'required|string|max:255',
-        'email'=>'required|email|string|unique:users,email,'.
-        $this->route('users')->id.'|max:255',
-        'password'=>'required|string|max:255',
-        'role'=>'required',
-        'apellido_Pat'=> 'required|string|max:255',
-        'apellido_Mat'=> 'required|string|max:255',
-        'anio_Nac'=> 'required|integer|max:255',
-        'genero' => 'required|string|max:255',
-        'informacion'=> 'required|string|max:255',
+            'name' => 'sometimes|required|string|max:255',
+            'email' => 'sometimes|required|email|max:255|unique:users,email,' . $this->user->id,
+            'password' => 'sometimes|required|string|min:8|max:255',
+            'role' => 'sometimes|required|in:participante,expositor,controlador',
+            'apellido_Pat' => 'sometimes|required|string|max:255',
+            'apellido_Mat' => 'sometimes|required|string|max:255',
+            'anio_Nac' => 'sometimes|required|date',
+            'genero' => 'sometimes|required|in:m,f,o',
+            'informacion' => 'nullable|string',
+            // Atributos específicos de cada tipo de usuario:
+            'nivel_estudios' => 'nullable|string|max:255|required_if:role,participante',
+            'profesion' => 'nullable|string|max:255|required_if:role,participante',
+            'nombre_empresa' => 'nullable|string|max:255|required_if:role,expositor',
+            'biografia' => 'nullable|string|required_if:role,expositor',
+            'turno' => 'nullable|string|max:255|required_if:role,controlador',
+            'fecha_inicio_contrato' => 'nullable|date|required_if:role,controlador',
+            'fecha_termino_contrato' => 'nullable|date|required_if:role,controlador',
         ];
     }
 
     public function messages()
     {
         return[
-        'name.required' => 'Este campo es requerido',
-        'name.string' => 'El valor no es correcto',
-        'name.max' => 'Solo se permiten 50 caracteres',
+            'name.required' => 'El nombre es obligatorio.',
+            'name.string' => 'El nombre debe ser una cadena de caracteres.',
+            'name.max' => 'El nombre no puede tener más de :max caracteres.',
 
-        'email.required'=>'Este campo es requerido',
-        'email.email'=>'No es un correo electrónico',
-        'email.string'=>'El valor no es correcto',
-        'email.max'=>'Solo se permiten 255 caracteres',
-        'email.unique'=>'Ya se encuentra registrado',
+            'apellido_pat.required' => 'El apellido paterno es obligatorio.',
+            'apellido_pat.string' => 'El apellido paterno debe ser una cadena de caracteres.',
+            'apellido_pat.max' => 'El apellido paterno no puede tener más de :max caracteres.',
 
-        'password.required' => 'Este campo es requerido',
-        'password.string' => 'El valor no es correcto',
-        'password.max' => 'Solo se permiten 50 caracteres',
+            'apellido_mat.required' => 'El apellido materno es obligatorio.',
+            'apellido_mat.string' => 'El apellido materno debe ser una cadena de caracteres.',
+            'apellido_mat.max' => 'El apellido materno no puede tener más de :max caracteres.',
 
-        'role.required' => 'Este campo es requerido',
+            'anio_nac.required' => 'El año de nacimiento es obligatorio.',
+            'anio_nac.date_format' => 'El año de nacimiento debe tener el formato :format.',
 
-        'apellido_Pat.required' => 'Este campo es requerido',
-        'apellido_Pat.string' => 'El valor no es correcto',
-        'apellido_Pat.max' => 'Solo se permiten 50 caracteres',
+            'genero.required' => 'El género es obligatorio.',
+            'genero.in' => 'El género debe ser Masculino, Femenino o No binario.',
 
-        'apellido_Pat.required' => 'Este campo es requerido',
-        'apellido_Pat.string' => 'El valor no es correcto',
-        'apellido_Pat.max' => 'Solo se permiten 50 caracteres',
+            'informacion.required' => 'La información es obligatoria.',
+            'informacion.string' => 'La información debe ser una cadena de caracteres.',
+            'informacion.max' => 'La información no puede tener más de :max caracteres.',
 
-        'anio_Nac.required' => 'Este campo es requerido',
-        'anio_Nac.string' => 'El valor no es correcto',
-        'anio_Nac.max' => 'Solo se permiten 50 caracteres',
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.string' => 'El correo electrónico debe ser una cadena de caracteres.',
+            'email.email' => 'El correo electrónico debe tener un formato válido.',
+            'email.unique' => 'El correo electrónico ya está en uso.',
 
-        'genero.required' => 'Este campo es requerido',
-        'genero.string' => 'El valor no es correcto',
-        'genero.max' => 'Solo se permiten 50 caracteres',
-
-        'informacion.required' => 'Este campo es requerido',
-        'informacion.string' => 'El valor no es correcto',
-        'informacion.max' => 'Solo se permiten 50 caracteres',
+            'password.required' => 'La contraseña es obligatoria.',
+            'password.string' => 'La contraseña debe ser una cadena de caracteres.',
+            'password.min' => 'La contraseña debe tener al menos :min caracteres.',
+            'password.confirmed' => 'Las contraseñas no coinciden.'
         ];
     }
 }

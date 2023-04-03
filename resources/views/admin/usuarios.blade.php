@@ -34,33 +34,17 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>controlador</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>2000</td>
-                <td>@mdo</td>
-                <td>Desconocido</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>usuario</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>2000</td>
-                <td>@mdo</td>
-                <td>Desconocido</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>admin</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>2000</td>
-                <td>@mdo</td>
-                <td>Desconocido</td>
-              </tr>
+              @foreach ($usuarios as $usuario)
+                <tr>
+                    <th scope="row">{{$usuario->id}}</th>
+                    <td>{{$usuario->role}}</td>
+                    <td>{{$usuario->name}}</td>
+                    <td>{{$usuario->apellido_Pat}} {{$usuario->apellido_Mat}} </td>
+                    <td>{{$usuario->anio_Nac}}</td>
+                    <td>{{$usuario->email}}</td>
+                    <td>{{$usuario->genero}}</td>
+                </tr>
+              @endforeach
             </tbody>
           </table>
     </div>

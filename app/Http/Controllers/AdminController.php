@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+//Importando modelos
+use App\Models\User;
+
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -10,10 +13,12 @@ class AdminController extends Controller
     {
         return view('admin/home',["msg"=>"Hello! I am admin"]);
     }
-
+    // obteniendo la tabla de usuarios
     public function indexUsuarios()
     {
-        return view('admin/usuarios',["msg"=>"Hello! I am admin"]);
+        $user = User::get();
+        return view('admin/usuarios',['usuarios'=>$user]);
+
     }
 
     public function indexEventos()

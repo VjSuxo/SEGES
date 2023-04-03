@@ -55,4 +55,29 @@ class User extends Authenticatable implements MustVerifyEmail
             get: fn ($value) =>  ["admin", "user", "controlador", "expositor"][$value],
         );
     }
+
+
+    public function expositor()
+    {
+        return $this->belongsTo(Expositor::class, 'id_expositor');
+    }
+
+    public function controlador()
+    {
+        return $this->belongsTo(Controlador::class, 'id_controlador');
+    }
+
+    public function participante()
+    {
+        return $this->belongsTo(Participante::class, 'id_participante');
+    }
+
+
+
 }
+
+
+
+
+
+

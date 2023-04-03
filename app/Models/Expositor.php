@@ -7,5 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Expositor extends Model
 {
-    use HasFactory;
+    protected $table = 'expositores';
+    protected $fillable = [
+        'nombre_empresa',
+        'biografia',
+    ];
+
+    public function usuario()
+    {
+        return $this->belongsTo(Usuario::class);
+    }
 }
