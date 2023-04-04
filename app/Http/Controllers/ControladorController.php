@@ -1,14 +1,26 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Evento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ControladorController extends Controller
 {
     public function controladorHome()
     {
-        return view('controlador/home',["msg"=>"Hello! I am controlador"]);
+
+        $user_id = Auth::id();
+
+        // modificar db
+        $eventos = Evento::with('temas')
+                ->whereHas('temas', function ($query) use ($idControlador) {
+                    $query->where('id_controlador', $idControlador);
+                })
+                ->get();
+                // para poder filtrar
+        return $eventos;
+        return view('controlador/home',['eventos'=>$eventos]);
     }
 
     public function controladorEvento()

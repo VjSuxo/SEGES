@@ -28,10 +28,8 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Descripcion</th>
                 <th scope="col">tipo</th>
-                <th scope="col">Capacidad</th>
                 <th scope="col">Cantidad de Clases</th>
                 <th scope="col">Ver Temas</th>
-                <th scope="col">Ver Contenido</th>
               </tr>
             </thead>
             <tbody>
@@ -41,9 +39,14 @@
                     <th>{{$evento->nombre}}</th>
                     <th>{{$evento->descripcion}}</th>
                     <th>{{$evento->tipo}}</th>
+                    <th> {{ count($evento->temas) }} </th>
+
+                    <th>   <a  href="{{  route('admin.temas', $evento->id) }}" class="btn btn-primary">Ver Temas</a> </th>
+
                 </tr>
                 @endforeach
             </tbody>
+
           </table>
     </div>
 

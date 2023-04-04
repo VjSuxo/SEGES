@@ -31,24 +31,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Evento 1</td>
-                <td>50</td>
-                <td>Reserva</td>
-              </tr>
-              <tr>
-                <th scope="row">1</th>
-                <td>Evento 1</td>
-                <td>50</td>
-                <td>Reserva</td>
-              </tr>
-              <tr>
-                <th scope="row">1</th>
-                <td>Evento 1</td>
-                <td>50</td>
-                <td>Reserva</td>
-              </tr>
+                @foreach ( $ambientes as $ambiente )
+                <tr>
+                    <th scope="row"> {{$ambiente->id}} </th>
+                    <td> {{ $ambiente->nombre }} </td>
+                    <td> {{ $ambiente->capacidad }} </td>
+                    <td> {{ $ambiente->estado}} </td>
+                  </tr>
+                @endforeach
             </tbody>
           </table>
     </div>

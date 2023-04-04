@@ -47,14 +47,16 @@ Route::middleware(['auth','user-role:admin'])->group(function()
 {
     Route::controller(AdminController::class)->group(function(){
         Route::get("/admin/usuarios",'indexUsuarios')->name("admin.usuarios");
-        Route::get("/admin/eventos",[AdminController::class, 'indexEventos'])->name("admin.eventos");
+        Route::get("/admin/eventos",'indexEventos')->name("admin.eventos");
+        Route::get("/admin/eventos/{evento}/temas",'indexTemas')->name("admin.temas");
+        Route::get("/admin/ambientes",'indexAmbiente')->name("admin.ambiente");
     });
     Route::get("/admin/home",[AdminController::class, 'adminHome'])->name("admin.home");
     //Route::get("/admin/home",[Admin_ImgController::class, 'index'])->name("admin.imagenes");
 
 
     Route::get("/admin/pagina_web",[AdminController::class, 'indexPagina_Web'])->name("admin.pagina_web");
-    Route::get("/admin/ambientes",[AdminController::class, 'indexAmbiente'])->name("admin.ambiente");
+
 
 
 
@@ -64,7 +66,12 @@ Route::middleware(['auth','user-role:admin'])->group(function()
 // Route controlador
 Route::middleware(['auth','user-role:controlador'])->group(function()
 {
-    Route::get("/controlador/home",[ControladorController::class, 'controladorHome'])->name("controlador.home");
+    Route::controller(ControladorController::class)->group(function(){
+        Route::get("/controlador/home", 'controladorHome')->name("controlador.home");
+        Route::get("/controlador/evento/index",'controladorEvento')->name("controlador.evento");
+    });
+
+
     Route::get("/controlador/ambientes",[ControladorController::class, 'controladorAmbientes'])->name("controlador.ambientes");
     Route::get("/controlador/ambientesinfo",[ControladorController::class, 'controladorAmbientesInfo'])->name("controlador.ambientesInfo");
     //crear un grup de eventos
