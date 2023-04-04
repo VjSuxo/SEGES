@@ -27,12 +27,13 @@ class AdminController extends Controller
     public function indexEventos()
     {
         $eventos = Evento::get();
-        $evento = Evento::with('temas.contenido', 'temas.infraestructura')->find(1);
+        $evento = Evento::with('temas.contenido')->find(1);
         $contenido = $evento->temas[0]->contenido;
-        $infraestructura = $evento->temas[0]->infraestructura;
+      //  $infraestructura = $evento->temas[0]->infraestructura;
         //$nombre_contenido = $contenido->nombre;
         //$nombre_infraestructura = $infraestructura->id_ambiente;
-        return $infraestructura;
+        return $evento->temas;
+        //return $infraestructura;
         return view('admin/eventos',['eventos'=>$eventos]);
     }
 
