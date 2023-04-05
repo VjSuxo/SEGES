@@ -5,11 +5,11 @@
             <ul class="nav nav-tabs">
               <li class="nav-item">
                 <div class="">
-                  <a class="nav-link" aria-current="page" href="/administrador/index.html">Eventos</a>
+                  <a class="nav-link" aria-current="page" href="{{  route('controlador.home') }}">Eventos</a>
                 </div>
               </li>
               <li class="nav-item activado">
-                <a class="nav-link" href="/administrador/usuario.html">Ambientes</a>
+                <a class="nav-link" href="{{  route('controlador.ambientes') }}">Ambientes</a>
               </li>
             </ul>
           </div>
@@ -37,64 +37,28 @@
 
 
             <div class="row row-cols-1 row-cols-md-3 g-4">
-              <div class="col">
-                <div class="card reservado" style="max-width: 18rem;">
 
-                  <div class="card-body">
-                      <h5 class="card-title">1</h5>
-                      <a type="button"  href="{{ route('controlador.ambientesInfo')}}" class="btn btn-secondary">Ver</a>
-                  </div>
-                  </div>
-              </div>
-
-              <div class="col">
-                  <div class="card libre" style="max-width: 18rem;">
-
-                    <div class="card-body">
-                        <h5 class="card-title">2</h5>
-                        <button type="button" class="btn btn-secondary">Ver</button>
-                    </div>
-                    </div>
-                </div>
-
+              @foreach ($ambientes as $ambiente)
                 <div class="col">
-                  <div class="card mantenimiento" style="max-width: 18rem;">
+                  <div class="card reservado" style="max-width: 18rem;">
 
                     <div class="card-body">
-                        <h5 class="card-title">3</h5>
-                        <button type="button" class="btn btn-secondary">Ver</button>
+                        <h5 class="card-title"> {{ $ambiente->nombre }} </h5>
+                        <a type="button"  href="{{ route('controlador.ambientesInfo')}}" class="btn btn-secondary">Ver</a>
                     </div>
                     </div>
                 </div>
+              @endforeach
 
-                <div class="col">
-                  <div class="card ocupado" style="max-width: 18rem;">
+              
 
-                    <div class="card-body">
-                        <h5 class="card-title">4</h5>
-                        <button type="button" class="btn btn-secondary">Ver</button>
-                    </div>
-                    </div>
-                </div>
 
-                <div class="col">
-                  <div class="card libre" style="max-width: 18rem;">
+                
 
-                    <div class="card-body">
-                        <h5 class="card-title">5</h5>
-                        <button type="button" class="btn btn-secondary">Ver</button>
-                    </div>
-                    </div>
-                </div>
 
-                <div class="col">
-                  <div class="card reservado"style="max-width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">6</h5>
-                        <button type="button" class="btn btn-secondary">Ver</button>
-                    </div>
-                  </div>
-                </div>
+              
+
+               
 
 
             </div>

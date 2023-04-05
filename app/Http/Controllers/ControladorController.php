@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Evento;
+use App\Models\Ambiente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,15 +12,16 @@ class ControladorController extends Controller
     {
 
         $user_id = Auth::id();
-
+        $eventos = Evento::get();
+        $eventos = Evento::with('temas.contenido')->get();
         // modificar db
-        $eventos = Evento::with('temas')
-                ->whereHas('temas', function ($query) use ($idControlador) {
-                    $query->where('id_controlador', $idControlador);
-                })
-                ->get();
+         //     $eventos = Evento::with('temas')
+         //       ->whereHas('temas', function ($query) use ($idControlador) {
+         //           $query->where('id_controlador', $idControlador);
+         //       })
+         //       ->get();
                 // para poder filtrar
-        return $eventos;
+        //return $eventos;
         return view('controlador/home',['eventos'=>$eventos]);
     }
 
@@ -40,7 +42,8 @@ class ControladorController extends Controller
 
     public function controladorAmbientes()
     {
-        return view('/controlador/ambientes',["msg"=>"Hello! I am controlador"]);
+        $ambientes = Ambiente::get();
+        return view('/controlador/ambientes',['ambientes'=>$ambientes]);
     }
 
     public function controladorAmbientesInfo()

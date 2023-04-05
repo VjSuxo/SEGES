@@ -19,22 +19,20 @@
                   <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Nombre</th>
-                    <th scope="col">Capacidad</th>
-                    <th scope="col">Estado</th>
                     <th scope="col">Cantidad de Clases</th>
                     <th scope="col">Opcion</th>
                   </tr>
                 </thead>
                 <tbody>
-
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Evento 1</td>
-                    <td>50</td>
-                    <td>Reserva</td>
-                    <td>10</td>
-                    <td><a type="button"  href="{{ route('controlador.evento') }}" class="btn btn-primary">Ver</a></td>
-                  </tr>
+                  @foreach ($eventos as $evento)
+                    <tr>
+                      <th scope="row"> {{ $evento->id }} </th>
+                      <td> {{ $evento->nombre }} </td>
+                      <td> {{ count($evento->temas) }} </td>
+                      <td><a type="button"  href="{{ route('controlador.evento') }}" class="btn btn-primary">Ver</a></td>
+                    </tr>
+                  @endforeach
+                  
 
                 </tbody>
               </table>

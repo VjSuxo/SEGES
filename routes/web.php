@@ -69,6 +69,7 @@ Route::middleware(['auth','user-role:controlador'])->group(function()
     Route::controller(ControladorController::class)->group(function(){
         Route::get("/controlador/home", 'controladorHome')->name("controlador.home");
         Route::get("/controlador/evento/index",'controladorEvento')->name("controlador.evento");
+        Route::get("/controlador/ambientes",'controladorAmbientes')->name("controlador.ambientes");
     });
 
 

@@ -37,7 +37,7 @@
               @foreach ($usuarios as $usuario)
                 <tr>
                     <th scope="row">{{$usuario->id}}</th>
-                    <td>{{$usuario->role}}</td>
+                    <td>{{$usuario->role}} </td>
                     <td>{{$usuario->name}}</td>
                     <td>{{$usuario->apellido_Pat}} {{$usuario->apellido_Mat}} </td>
                     <td>{{$usuario->anio_Nac}}</td>
