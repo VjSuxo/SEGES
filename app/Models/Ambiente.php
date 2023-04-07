@@ -23,7 +23,14 @@ class Ambiente extends Model
 
     public function infraestructura()
     {
-        return $this->belongsTo(Controlador::class);
+        return $this->belongsTo(Infraestructura::class);
     }
+
+    public function infraestructuras()
+    {
+        return $this->hasMany(Infraestructura::class);
+    }
+
+
 
 }

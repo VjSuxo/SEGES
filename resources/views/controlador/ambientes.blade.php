@@ -40,25 +40,25 @@
 
               @foreach ($ambientes as $ambiente)
                 <div class="col">
-                  <div class="card reservado" style="max-width: 18rem;">
+                  <div class="card {{ $ambiente->estado }} text-center align-items-center" style="max-width: 18rem;">
 
                     <div class="card-body">
-                        <h5 class="card-title"> {{ $ambiente->nombre }} </h5>
-                        <a type="button"  href="{{ route('controlador.ambientesInfo')}}" class="btn btn-secondary">Ver</a>
+                        <h1 class="card-title"> {{ $ambiente->nombre }} </h1>
+                        <a type="button"  href="{{ route('controlador.ambientesInfo', $ambiente->id )}}" class="btn btn-secondary">Ver</a>
                     </div>
                     </div>
                 </div>
               @endforeach
 
-              
 
 
-                
 
 
-              
 
-               
+
+
+
+
 
 
             </div>

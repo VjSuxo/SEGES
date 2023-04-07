@@ -19,10 +19,21 @@ class Infraestructura extends Model
         return $this->belongsTo(Tema::class);
     }
 
+    public function temas()
+    {
+        return $this->hasMany(Tema::class);
+    }
+
     public function reservas()
     {
         return $this->hasMany(Reserva::class);
     }
+
+    public function reserva()
+    {
+        return $this->belongsTo(Reserva::class);
+    }
+
 
     public function ambiente()
     {

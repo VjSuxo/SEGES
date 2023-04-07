@@ -21,34 +21,38 @@
         </ul>
     </div>
     <div class="container General">
-        <table class="table">
+        <div class="border">
+            <a class="btn btn-primary  position-absolute top-10 start-50 translate-middle"  href="{{ url()->previous() }}">Regresasr</a>
+        </div>
+        <table class="mt-5 table">
             <thead>
               <tr>
-                <th scope="col">CI</th>
-                <th scope="col">Role</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Apellido</th>
-                <th scope="col">Fecha Nacimiento</th>
-                <th scope="col">Correo</th>
-                <th scope="col">Genero</th>
-                <th scope="col">Historial</th>
+                <th scope="col">id</th>
+                <th scope="col">Accion</th>
+                <th scope="col">Rol</th>
+                <th scope="col">Fecha </th>
+                <th scope="col">Hora</th>
               </tr>
             </thead>
             <tbody>
-              @foreach ($usuarios as $usuario)
+              @foreach ($auditorias as $info)
                 <tr>
-                    <th scope="row">{{$usuario->id}}</th>
-                    <td>{{$usuario->role}} </td>
-                    <td>{{$usuario->name}}</td>
-                    <td>{{$usuario->apellido_Pat}} {{$usuario->apellido_Mat}} </td>
-                    <td>{{$usuario->anio_Nac}}</td>
-                    <td>{{$usuario->email}}</td>
-                    <td>{{$usuario->genero}}</td>
-                    <td> <a class="btn btn-primary" href="{{ route('admin.usuariosHistorial',$usuario->id) }}">Ver</a> </td>
+                    <th scope="row">{{$info->id}}</th>
+                    <td>{{$info->accion}} </td>
+                    <td>{{$info->modelo}}</td>
+                    <td>{{  \Carbon\Carbon::parse($info->created_at)->toDateString() }}</td>
+                    <td>{{  \Carbon\Carbon::parse($info->created_at)->hour }} : {{ \Carbon\Carbon::parse($info->created_at)->minute }}</td>
                 </tr>
               @endforeach
-              {{ $usuarios->links('pagination.custom') }}
+
             </tbody>
+
           </table>
+
+            {{ $auditorias->links('pagination.custom') }}
+
+
     </div>
+
+
 </x-layouts>

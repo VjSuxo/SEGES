@@ -27,7 +27,7 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 //0 = admin, 1 = user,  2 = controlador, 3 = expositor
 // Route User
-Route::middleware(['auth','user-role:user','verified'])->group(function()
+Route::middleware(['auth','user-role:user','verified','audit'])->group(function()
 {
     Route::get("/user/home",[HomeController::class, 'userHome'])->name("user.home");
     Route::get("/user/misEventos",[UserController::class, 'userEventos'])->name("user.misEventos");
@@ -35,7 +35,7 @@ Route::middleware(['auth','user-role:user','verified'])->group(function()
     Route::get("/home",[HomeController::class, 'userHome'])->name("home");
 });
 // Route Expositor
-Route::middleware(['auth','user-role:expositor'])->group(function()
+Route::middleware(['auth','user-role:expositor','audit'])->group(function()
 {
     Route::get("/expositor/home",[ExpositorController::class, 'expositorHome'])->name("expositor.home");
 
@@ -43,10 +43,11 @@ Route::middleware(['auth','user-role:expositor'])->group(function()
     Route::get("/expositor/evento/Material",[ExpositorController::class, 'expositorMaterial'])->name("expositor.eventoMaterial");
 });
 // Route Admin
-Route::middleware(['auth','user-role:admin'])->group(function()
+Route::middleware(['auth','user-role:admin','audit'])->group(function()
 {
     Route::controller(AdminController::class)->group(function(){
         Route::get("/admin/usuarios",'indexUsuarios')->name("admin.usuarios");
+        Route::get("/admin/{usuario}/historial_Usuarios",'historialUsuario')->name("admin.usuariosHistorial");
         Route::get("/admin/eventos",'indexEventos')->name("admin.eventos");
         Route::get("/admin/eventos/{evento}/temas",'indexTemas')->name("admin.temas");
         Route::get("/admin/ambientes",'indexAmbiente')->name("admin.ambiente");
@@ -64,17 +65,18 @@ Route::middleware(['auth','user-role:admin'])->group(function()
 });
 
 // Route controlador
-Route::middleware(['auth','user-role:controlador'])->group(function()
+Route::middleware(['auth','user-role:controlador','audit'])->group(function()
 {
     Route::controller(ControladorController::class)->group(function(){
         Route::get("/controlador/home", 'controladorHome')->name("controlador.home");
         Route::get("/controlador/evento/index",'controladorEvento')->name("controlador.evento");
         Route::get("/controlador/ambientes",'controladorAmbientes')->name("controlador.ambientes");
+        Route::get("/controlador/{ambiente}/ambientesinfo",'controladorAmbientesInfo')->name("controlador.ambientesInfo");
     });
 
 
     Route::get("/controlador/ambientes",[ControladorController::class, 'controladorAmbientes'])->name("controlador.ambientes");
-    Route::get("/controlador/ambientesinfo",[ControladorController::class, 'controladorAmbientesInfo'])->name("controlador.ambientesInfo");
+
     //crear un grup de eventos
     Route::get("/controlador/evento/index",[ControladorController::class, 'controladorEvento'])->name("controlador.evento");
     Route::get("/controlador/evento/horario",[ControladorController::class, 'controladorEvento_Horario'])->name("controlador.evento_horario");

@@ -69,3 +69,29 @@ nav{
     justify-content: space-around;
 }
 
+.pagination {
+    color: white;
+    margin-left: 35% ;
+}
+
+.pagination a {
+    color: white;
+    margin: 10px;
+    font-size: 20px;
+}
+
+.pagination a:hover {
+    background: rgb(99, 99, 159);
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.pagination .active{
+    background: blue;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.pagination .active:hover{
+    background: rgb(92, 92, 176);
+}

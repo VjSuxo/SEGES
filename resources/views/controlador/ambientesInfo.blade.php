@@ -1,5 +1,5 @@
 <x-layouts.app>
-    @vite(['resources/css/style_cards.css','resources/css/style_ListaEstado.css'])
+    @vite(['resources/css/style_cards.css','resources/css/style_ListaEstado.css','resources/css/style_controlador.css'])
     <div class="contenedor">
         <div class="navegadorUsuario">
             <ul class="nav nav-tabs">
@@ -15,7 +15,7 @@
         </div>
 
         <div class="General border">
-            <h1 class="titulo">Ambiente 1</h1>
+            <h1 class="titulo"> {{ $informacion->nombre }} </h1>
             <div class="row align-items-start">
                 <div class="col m-5 border">
                     <h1 class="titulo">Agenda</h1>
@@ -31,74 +31,69 @@
                           </tr>
                         </thead>
                         <tbody>
+
+                          @foreach ( $informacion->infraestructuras as $infraestructura )
                           <tr>
-                            <th scope="row">1</th>
-                            <td>8:00 a 10:00</td>
-                            <td>Lunes 21</td>
-                            <td>Marzo</td>
-                            <td>2023</td>
-                            <td>2 horas</td>
+                            <th scope="row"> {{ $infraestructura->id }} </th>
+                            <td> {{$infraestructura->tema->hora_inicio}} {{$infraestructura->tema->hora_fin}} </td>
+                            <td> {{
+                                    \Carbon\Carbon::parse($infraestructura->reservas[0]->fecha)->day
+                                  }}
+                             <!--    {{
+                                    \Carbon\Carbon::parse($infraestructura->reservas[0]->fecha)->locale('es')->isoFormat('dddd')
+                                 }}  -->
+                            </td>
+                            <td>  {{ \Carbon\Carbon::parse($infraestructura->reservas[0]->fecha)->locale('es')->monthName }} </td>
+                            <td>    {{ \Carbon\Carbon::parse($infraestructura->reservas[0]->fecha)->year }}</td>
+                            <td>
+                                @if (\Carbon\Carbon::parse($infraestructura->tema->hora_inicio)->hour > \Carbon\Carbon::parse($infraestructura->tema->hora_fin)->hour)
+                                    {{  \Carbon\Carbon::parse($infraestructura->tema->hora_inicio)->hour -
+                                    \Carbon\Carbon::parse($infraestructura->tema->hora_fin)->hour }}
+                                @else
+                                {{  \Carbon\Carbon::parse($infraestructura->tema->hora_fin)->hour -
+                                    \Carbon\Carbon::parse($infraestructura->tema->hora_inicio)->hour }}
+                                @endif
+                                    horas
+
+                            </td>
                           </tr>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>8:00 a 10:00</td>
-                            <td>Lunes 21</td>
-                            <td>Marzo</td>
-                            <td>2023</td>
-                            <td>2 horas</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>8:00 a 10:00</td>
-                            <td>Lunes 21</td>
-                            <td>Marzo</td>
-                            <td>2023</td>
-                            <td>2 horas</td>
-                          </tr>
+                          @endforeach
+
+
+
                         </tbody>
                     </table>
                 </div>
 
-                <div class="col m-5 border">
+                <div class="col m-5 border d-flex flex-column align-items-center  informacionInfra" >
                     <h1 class="titulo">Infraestructura</h1>
-                    <table class="table">
-                        <thead>
-                          <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Tipo</th>
-                            <th scope="col">Cantidad</th>
-                            <th scope="col">Editar</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>Mesa</td>
-                            <td>Mueble</td>
-                            <td>10</td>
-                            <td><a type="button"  href="#" class="btn btn-primary">Editar</a></td>
-                          </tr>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>Mesa</td>
-                            <td>Mueble</td>
-                            <td>10</td>
-                            <td><a type="button"  href="#" class="btn btn-primary">Editar</a></td>
-                          </tr>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>Mesa</td>
-                            <td>Mueble</td>
-                            <td>10</td>
-                            <td><a type="button"  href="#" class="btn btn-primary">Editar</a></td>
-                          </tr>
-                        </tbody>
-                    </table>
+
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                          <div class="col-md-4 image">
+                            <img src="/storage/imagenes/evento1.jpg" class="img-fluid" alt="...">
+                          </div>
+                          <div class="col-md-6">
+                            <div class="card-body">
+                              <h5 class="card-title">Caracteristicas</h5>
+                              <ul class="list-group list-group-flush">
+                                <div class="cuerpo">
+                                    <li class="list-group-item"> Capacidad : {{ $informacion->capacidad }}  </li>
+                                    <br>
+                                    <li class="list-group-item">Estado :  {{ $informacion->estado }}</li>
+                                    <br>
+                                </div>
+                            </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
                 </div>
 
             </div>
-
+            <a class="btn btn-primary position-absolute top-100 start-50 translate-middle"  href="{{ url()->previous() }}">Regresasr</a>
      </div>
 
     </div>

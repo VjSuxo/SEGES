@@ -36,4 +36,9 @@ class Tema extends Model
         return $this->hasMany(Infraestructura::class);
     }
 
+    public function infraestructuras()
+    {
+        return $this->belongsTo(Infraestructura::class);
+    }
+
 }

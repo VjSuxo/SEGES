@@ -12,11 +12,21 @@ class Reserva extends Model
 
     public function infraestructura()
     {
-        return $this->belongsTo('App\Models\Infraestructura');
+        return $this->belongsTo(Infraestructura::class);
+    }
+
+    public function infraestructuras()
+    {
+        return $this->hasMany(Infraestructura::class);
     }
 
     public function temas()
     {
         return $this->belongsTo(Tema::class);
+    }
+
+    public function tema()
+    {
+        return $this->hasMany(Tema::class);
     }
 }

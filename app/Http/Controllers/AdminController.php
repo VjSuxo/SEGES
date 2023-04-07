@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Evento;
 use App\Models\Ambiente;
+use App\Models\Auditoria;
 use App\Models\Infraestructura;
 
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class AdminController extends Controller
     // obteniendo la tabla de usuarios
     public function indexUsuarios()
     {
-        $user = User::get();
+        $user = User::paginate(10);
         return view('admin/usuarios',['usuarios'=>$user]);
 
     }
@@ -70,5 +71,12 @@ class AdminController extends Controller
         $ambientes = Ambiente::get();
         return view('admin/ambientes',['ambientes'=>$ambientes]);
     }
+
+    public function historialUsuario(User $usuario){
+        $auditorias = Auditoria::where('user_id',$usuario->id)->paginate(10);
+        return view('admin/historial_Usuarios',['auditorias'=>$auditorias]);
+    }
+
+
 
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Evento;
 use App\Models\Ambiente;
+use App\Models\Infraestructura;
+use App\Models\Reserva;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -46,9 +48,20 @@ class ControladorController extends Controller
         return view('/controlador/ambientes',['ambientes'=>$ambientes]);
     }
 
-    public function controladorAmbientesInfo()
+    public function controladorAmbientesInfo(Ambiente $ambiente)
     {
-        return view('/controlador/ambientesinfo',["msg"=>"Hello! I am controlador"]);
+        // , 'infraestructura.tema'  :with('infraestructura.temas')->
+        $infra = Ambiente::with('infraestructuras.tema', 'infraestructuras.reservas')->find($ambiente->id);
+        //return $infra;
+        //return $infraestructura;
+
+        //$ambiente = Ambiente::find($ambiente->id);
+        //$infraestructuras = $ambiente->infraestructuras;
+        //$reservas = Reserva::get();
+
+
+
+        return view('/controlador/ambientesinfo',['informacion'=>$infra]);
     }
 
     public function controladorEvento_Certificados()
