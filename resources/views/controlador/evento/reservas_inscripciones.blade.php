@@ -2,29 +2,29 @@
     @vite(['resources/css/style_inscritos.css','resources/css/style_ListaEstado.css'])
     <div class="contenedor">
         <div class="navegadorUsuario">
-          <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('controlador.home') }}">Otros Eventos</a>
-              </li>
-            <li class="nav-item">
-              <div>
-                <a class="nav-link" aria-current="page" href="{{ route('controlador.evento') }}">Infraestructura</a>
-              </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('controlador.evento_horario') }}">Horario</a>
-              </li>
-              <li class="nav-item activado"">
-                <a class="nav-link" href="{{ route('controlador.evento_reservas_inscripcion') }}">Reservas | Inscripciones</a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link" href="{{ route('controlador.evento_asistencia') }}">Asistencia</a>
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ route('controlador.home') }}">Otros Eventos</a>
+                </li>
+              <li class="nav-item">
+                <div class="">
+                  <a class="nav-link" aria-current="page" href="{{ route('controlador.evento', $evento->id) }}">Informacion</a>
+                </div>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ route('controlador.evento_certificados') }}">Certificados</a>
-              </li>
-          </ul>
-        </div>
+                  <a class="nav-link" href="{{ route('controlador.evento_horario',$evento->id) }}">Horario</a>
+                </li>
+                <li class="nav-item activado">
+                  <a class="nav-link" href=" {{ route('controlador.evento_reservas_inscripcion',$evento->id) }} ">Reservas | Inscripciones</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route('controlador.evento_asistencia') }}">Asistencia</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route('controlador.evento_certificados') }}">Certificados</a>
+                </li>
+            </ul>
+          </div>
 
         <div class="container General">
             <div class="listaEstado">
@@ -36,6 +36,10 @@
                   <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
                   <label class="form-check-label" for="inlineRadio2"><p>INSCRIPCION</p></label>
                 </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                    <label class="form-check-label" for="inlineRadio2"><p>TODO</p></label>
+                  </div>
             </div>
 
             <div class="lado">
@@ -44,29 +48,32 @@
                       <tr>
                         <th scope="col">CI</th>
                         <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
                         <th scope="col">Correo</th>
-                        <th scope="col">Numero</th>
+                        <th scope="col">Estado</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>controlador</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>usuario</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>admin</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                      </tr>
+
+                        @foreach ( $evento->eventoParticipante as $participante )
+                        <tr>
+                            <th scope="row"> {{ $participante->participante->usuario->id }} </th>
+                            <td>{{ $participante->participante->usuario->name }} </td>
+                            <td>{{ $participante->participante->usuario->apellido_Pat }} {{ $participante->participante->usuario->apellido_Mat }} </td>
+                            <td>{{ $participante->participante->usuario->email }} </td>
+                            <td>
+                                @if ($participante->inscrito == 1)
+                                    Inscrito
+                                @endif
+                                @if ($participante->reservado == 1)
+                                    Reservado
+                                @endif
+                            </td>
+
+                        </tr>
+                        @endforeach
+
+
                     </tbody>
                   </table>
                 <div class="botones">
@@ -84,3 +91,26 @@
             </div>
     </div>
 </x-layouts.app>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    @vite(['resources/css/style.css','resources/css/style_texto.css'])
+    <title>Document</title>
+     <!-- Fonts -->
+     <link rel="preconnect" href="https://fonts.bunny.net">
+     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+</head>
+<body >
+
+
+    <div class="contenedor">
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</body>
+</html>

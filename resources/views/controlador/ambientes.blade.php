@@ -38,13 +38,13 @@
 
             <div class="row row-cols-1 row-cols-md-3 g-4">
 
-              @foreach ($ambientes as $ambiente)
+              @foreach ($ambientes->ambientes as $ambiente)
                 <div class="col">
                   <div class="card {{ $ambiente->estado }} text-center align-items-center" style="max-width: 18rem;">
 
                     <div class="card-body">
-                        <h1 class="card-title"> {{ $ambiente->nombre }} </h1>
-                        <a type="button"  href="{{ route('controlador.ambientesInfo', $ambiente->id )}}" class="btn btn-secondary">Ver</a>
+                        <h1 class="card-title"> {{ $ambiente->nombre }}  </h1>
+                        <a type="button"  href="{{ route('controlador.ambientesInfo', $ambiente->id )}}" class="btn btn-secondary">Ver  {{ $ambiente->id }}  </a>
                     </div>
                     </div>
                 </div>

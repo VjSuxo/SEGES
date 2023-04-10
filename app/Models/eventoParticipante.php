@@ -16,9 +16,10 @@ class eventoParticipante extends Model
         'reservado',
     ];
 
-    public function participantes()
+
+    public function participante()
     {
-        return $this->belongsToMany(Participante::class);
+        return $this->belongsTo(Participante::class);
     }
 
     public function eventos()

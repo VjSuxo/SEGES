@@ -101,7 +101,7 @@ class CreateUserSeeder extends Seeder
         ]);
         ///
 
-
+        // CONTROLADOR
 
       $usuario = User::create([
             'id' => 32,
@@ -122,7 +122,48 @@ class CreateUserSeeder extends Seeder
                   'fecha_termino_contrato' => '2022-12-01',
                   'usuario_id' => $usuario->id,
                   // ...
-              ]);
+       ]);
+
+       $usuario = User::create([
+
+        'name' => 'Kira',
+        'email' => 'KiraYam@hotmail.com',
+        'password' => bcrypt('password123'),
+
+        'role'=>2,
+        'apellido_Pat'=>'Yamashi',
+        'apellido_Mat'=> 'Perez',
+        'anio_Nac'=> 2000,
+        'genero'=> 'unicornio',
+        ]);
+
+    $controlador = Controlador::create([
+                'turno' => 'mañana',
+                'fecha_inicio_contrato' => '2022-01-01',
+                'fecha_termino_contrato' => '2022-12-01',
+                'usuario_id' => $usuario->id,
+                // ...
+    ]);
+    $usuario = User::create([
+
+        'name' => 'Torino',
+        'email' => 'TorinoMarquez@hotmail.com',
+        'password' => bcrypt('password123'),
+
+        'role'=>2,
+        'apellido_Pat'=>'Marquez',
+        'apellido_Mat'=> 'Carabaz',
+        'anio_Nac'=> 2000,
+        'genero'=> 'unicornio',
+    ]);
+
+    $controlador = Controlador::create([
+            'turno' => 'mañana',
+            'fecha_inicio_contrato' => '2022-01-01',
+            'fecha_termino_contrato' => '2022-12-01',
+            'usuario_id' => $usuario->id,
+            // ...
+    ]);
 
 
     }

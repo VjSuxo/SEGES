@@ -69,7 +69,11 @@ Route::middleware(['auth','user-role:controlador','audit'])->group(function()
 {
     Route::controller(ControladorController::class)->group(function(){
         Route::get("/controlador/home", 'controladorHome')->name("controlador.home");
-        Route::get("/controlador/evento/index",'controladorEvento')->name("controlador.evento");
+
+        Route::get("/evento/{eve}/index",'controladorEventoIndex')->name("controlador.evento");
+        Route::get("/evento/{evento}/pp",'controladorEventoInformacion')->name("controlador.eventoInformacion");
+        Route::get("/controlador/evento/{evento}/reservas_inscripciones",'controladorEvento_Reservas_Inscrip')->name("controlador.evento_reservas_inscripcion");
+        Route::get("/controlador/evento/{evento}/horario", 'controladorEvento_Horario')->name("controlador.evento_horario");
         Route::get("/controlador/ambientes",'controladorAmbientes')->name("controlador.ambientes");
         Route::get("/controlador/{ambiente}/ambientesinfo",'controladorAmbientesInfo')->name("controlador.ambientesInfo");
     });
@@ -78,10 +82,10 @@ Route::middleware(['auth','user-role:controlador','audit'])->group(function()
     Route::get("/controlador/ambientes",[ControladorController::class, 'controladorAmbientes'])->name("controlador.ambientes");
 
     //crear un grup de eventos
-    Route::get("/controlador/evento/index",[ControladorController::class, 'controladorEvento'])->name("controlador.evento");
-    Route::get("/controlador/evento/horario",[ControladorController::class, 'controladorEvento_Horario'])->name("controlador.evento_horario");
+
+
     Route::get("/controlador/evento/asistencia",[ControladorController::class, 'controladorEvento_Asistencia'])->name("controlador.evento_asistencia");
     Route::get("/controlador/evento/certificados",[ControladorController::class, 'controladorEvento_Certificados'])->name("controlador.evento_certificados");
-    Route::get("/controlador/evento/reservas_inscripciones",[ControladorController::class, 'controladorEvento_Reservas_Inscrip'])->name("controlador.evento_reservas_inscripcion");
+
 });
 

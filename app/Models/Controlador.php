@@ -19,4 +19,15 @@ class Controlador extends Model
     {
         return $this->belongsTo(Usuario::class);
     }
+
+    public function eventos()
+    {
+        return $this->hasMany(Evento::class);
+    }
+
+    public function ambientes()
+    {
+        return $this->hasMany(Ambiente::class);
+    }
+
 }

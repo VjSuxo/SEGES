@@ -1,10 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Users;
 use App\Models\Evento;
+use App\Models\Controlador;
+use App\Models\Participante;
 use App\Models\Ambiente;
 use App\Models\Infraestructura;
 use App\Models\Reserva;
+use App\Models\eventoParticipante;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,9 +17,11 @@ class ControladorController extends Controller
     public function controladorHome()
     {
 
-        $user_id = Auth::id();
-        $eventos = Evento::get();
-        $eventos = Evento::with('temas.contenido')->get();
+        //$user_id = Auth::id();
+        $controlador = Controlador::where('usuario_id',Auth::id())->first();
+        $eventos = Evento::with('temas.contenido','controlador')->where('controlador_id',$controlador->id)->get();
+       // return $eventos;
+
         // modificar db
          //     $eventos = Evento::with('temas')
          //       ->whereHas('temas', function ($query) use ($idControlador) {
@@ -27,29 +33,47 @@ class ControladorController extends Controller
         return view('controlador/home',['eventos'=>$eventos]);
     }
 
-    public function controladorEvento()
+    public function controladorEventoIndex(Evento $eve)
     {
-        return view('controlador/evento/index',["msg"=>"Hello! I am controlador"]);
+        $evento = Evento::with('comentario', 'comentario.participante', 'comentario.participante.usuario' ,'temas.contenido' , 'temas.expositor', 'temas.expositor.usuario')->find($eve->id);
+
+        //return  $evento->temas;
+
+        return view('controlador/evento/index',['evento'=>$evento]);
     }
 
-    public function controladorEvento_Horario()
+    public function controladorEventoInformacion(Evento $evento)
     {
-        return view('controlador/evento/horario',["msg"=>"Hello! I am controlador"]);
+        //$evento = Evento::with('temas.contenido')->find($evento->id);
+        //return $evento;
+        return view('controlador/evento/pp',['evento'=>$evento]);
     }
 
-    public function controladorEvento_Asistencia()
+
+
+    public function controladorEvento_Horario(Evento $evento)
     {
-        return view('controlador/evento/asistencia',["msg"=>"Hello! I am controlador"]);
+        return view('controlador/evento/horario',['evento' => $evento]);
+    }
+
+    public function controladorEvento_Asistencia(Evento $evento)
+    {
+        return view('controlador/evento/asistencia',['evento'=>$evento]);
     }
 
     public function controladorAmbientes()
     {
-        $ambientes = Ambiente::get();
+
+        $controlador = Controlador::where('usuario_id',Auth::id())->first();
+       // return $controlador;
+        $ambientes =  Controlador::with('ambientes')->find($controlador->id);
+        //return $ambientes->ambientes;
         return view('/controlador/ambientes',['ambientes'=>$ambientes]);
     }
 
     public function controladorAmbientesInfo(Ambiente $ambiente)
     {
+     //   return $ambiente;
         // , 'infraestructura.tema'  :with('infraestructura.temas')->
         $infra = Ambiente::with('infraestructuras.tema', 'infraestructuras.reservas')->find($ambiente->id);
         //return $infra;
@@ -69,9 +93,11 @@ class ControladorController extends Controller
         return view('controlador/evento/certificados',["msg"=>"Hello! I am controlador"]);
     }
 
-    public function controladorEvento_Reservas_Inscrip()
+    public function controladorEvento_Reservas_Inscrip(Evento $evento)
     {
-        return view('controlador/evento/reservas_inscripciones',["msg"=>"Hello! I am controlador"]);
+        $evento = Evento::with('eventoParticipante', 'eventoParticipante.participante', 'eventoParticipante.participante.usuario')->find($evento->id);
+        //return $evento;
+        return view('controlador/evento/reservas_inscripciones',['evento'=>$evento]);
     }
 
 }

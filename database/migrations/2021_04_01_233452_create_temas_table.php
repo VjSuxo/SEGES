@@ -15,6 +15,7 @@ return new class extends Migration
             $table->text('descripcion');
             $table->string('hora_inicio');
             $table->string('hora_fin');
+            $table->date('fecha');
             $table->unsignedBigInteger('evento_id');
             $table->unsignedBigInteger('expositor_id');
 

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('evento_id')->constrained();
             $table->foreignId('participante_id')->constrained('participantes');
+
             $table->boolean('inscrito')->default(false);
             $table->boolean('reservado')->default(false);
             $table->timestamps();

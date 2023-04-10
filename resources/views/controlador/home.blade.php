@@ -29,10 +29,10 @@
                       <th scope="row"> {{ $evento->id }} </th>
                       <td> {{ $evento->nombre }} </td>
                       <td> {{ count($evento->temas) }} </td>
-                      <td><a type="button"  href="{{ route('controlador.evento') }}" class="btn btn-primary">Ver</a></td>
+                      <td><a type="button"  href="{{ route('controlador.evento', ['eve' => $evento->id] ) }}" class="btn btn-primary">Ver {{ $evento->id }} </a></td>
                     </tr>
                   @endforeach
-                  
+
 
                 </tbody>
               </table>

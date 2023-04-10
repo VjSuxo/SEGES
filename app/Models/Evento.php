@@ -13,6 +13,7 @@ class Evento extends Model
         'nombre',
         'descripcion',
         'tipo',
+        'controlador_id',
     ];
 
     public function certificado()
@@ -35,4 +36,16 @@ class Evento extends Model
     {
         return $this->belongsToMany(Usuario::class)->withPivot('asistio');
     }
+
+    public function controlador()
+    {
+        return $this->belongsTo(Controlador::class);
+    }
+
+    public function eventoParticipante()
+    {
+        return $this->hasMany(eventoParticipante::class);
+    }
+
+
 }
