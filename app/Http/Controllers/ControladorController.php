@@ -60,7 +60,8 @@ class ControladorController extends Controller
     {
         return view('controlador/evento/asistencia',['evento'=>$evento]);
     }
-
+    
+   
     public function controladorAmbientes()
     {
 
@@ -73,10 +74,10 @@ class ControladorController extends Controller
 
     public function controladorAmbientesInfo(Ambiente $ambiente)
     {
-     //   return $ambiente;
+      //return $ambiente;
         // , 'infraestructura.tema'  :with('infraestructura.temas')->
         $infra = Ambiente::with('infraestructuras.tema', 'infraestructuras.reservas')->find($ambiente->id);
-        //return $infra;
+       // return $infra;
         //return $infraestructura;
 
         //$ambiente = Ambiente::find($ambiente->id);
@@ -88,9 +89,9 @@ class ControladorController extends Controller
         return view('/controlador/ambientesinfo',['informacion'=>$infra]);
     }
 
-    public function controladorEvento_Certificados()
+    public function controladorEvento_Certificados(Evento $evento)
     {
-        return view('controlador/evento/certificados',["msg"=>"Hello! I am controlador"]);
+        return view('controlador/evento/certificados',['evento' => $evento]);
     }
 
     public function controladorEvento_Reservas_Inscrip(Evento $evento)
@@ -99,5 +100,26 @@ class ControladorController extends Controller
         //return $evento;
         return view('controlador/evento/reservas_inscripciones',['evento'=>$evento]);
     }
+
+    public function controladorFilRe(Evento $evento)
+    {
+        $evento = Evento::with(['eventoParticipante' => function ($query) {
+            $query->where('inscrito', '=', 1);
+            $query->with(['participante', 'participante.usuario']);
+    }])->find($evento->id);   
+    return $evento;
+     //   return view('controlador/evento/asistencia',['evento'=>$evento]);
+    }
+
+    public function controladorFilIns(Evento $evento)
+    {
+        return view('controlador/evento/asistencia',['evento'=>$evento]);
+    }
+
+    public function controladorFilTodo(Evento $evento)
+    {
+        return view('controlador/evento/asistencia',['evento'=>$evento]);
+    }
+
 
 }

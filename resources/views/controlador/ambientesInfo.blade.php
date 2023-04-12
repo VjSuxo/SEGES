@@ -5,11 +5,11 @@
             <ul class="nav nav-tabs">
               <li class="nav-item">
                 <div class="">
-                  <a class="nav-link" aria-current="page" href="/administrador/index.html">Eventos</a>
+                  <a class="nav-link" aria-current="page" href="{{  route('controlador.home') }}">Eventos</a>
                 </div>
               </li>
               <li class="nav-item activado">
-                <a class="nav-link" href="/administrador/usuario.html">Ambientes</a>
+                <a class="nav-link" href="{{  route('controlador.ambientes') }}">Ambientes</a>
               </li>
             </ul>
         </div>

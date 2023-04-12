@@ -12,17 +12,14 @@
                 <a class="nav-link" aria-current="page" href="{{ route('controlador.evento', $evento->id) }}">Informacion</a>
               </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('controlador.evento_horario',$evento->id) }}">Horario</a>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('controlador.evento_ResIns',$evento->id) }}">Reservas | Inscripciones</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="">Reservas | Inscripciones</a>
+                <a class="nav-link" href="{{ route('controlador.evento_asistencia',$evento->id) }}">Asistencia</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ route('controlador.evento_asistencia') }}">Asistencia</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('controlador.evento_certificados') }}">Certificados</a>
+                <a class="nav-link" href="{{ route('controlador.evento_certificados',$evento->id) }}">Certificados</a>
               </li>
           </ul>
         </div>
@@ -91,7 +88,7 @@
                 </div>
                 <div class="div5">
                     <div class="cuerpo">
-                        <h1>Preguntas Frecuentes</h1>
+                       
                     </div>
                 </div>
                 <div class="div6">

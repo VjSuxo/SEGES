@@ -70,10 +70,17 @@ Route::middleware(['auth','user-role:controlador','audit'])->group(function()
     Route::controller(ControladorController::class)->group(function(){
         Route::get("/controlador/home", 'controladorHome')->name("controlador.home");
 
-        Route::get("/evento/{eve}/index",'controladorEventoIndex')->name("controlador.evento");
-        Route::get("/evento/{evento}/pp",'controladorEventoInformacion')->name("controlador.eventoInformacion");
-        Route::get("/controlador/evento/{evento}/reservas_inscripciones",'controladorEvento_Reservas_Inscrip')->name("controlador.evento_reservas_inscripcion");
+        Route::get("/controlador/evento/{eve}/index",'controladorEventoIndex')->name("controlador.evento");
+        Route::get("/controlador/evento/{evento}/pp",'controladorEventoInformacion')->name("controlador.eventoInformacion");
+        Route::get("/controlador/evento/{evento}/reservas_inscripciones",'controladorEvento_Reservas_Inscrip')->name("controlador.evento_ResIns");
         Route::get("/controlador/evento/{evento}/horario", 'controladorEvento_Horario')->name("controlador.evento_horario");
+        Route::get("/controlador/evento/{evento}asistencia",'controladorEvento_Asistencia')->name("controlador.evento_asistencia");
+        Route::get("/controlador/evento/{evento}/certificados",'controladorEvento_Certificados')->name("controlador.evento_certificados");
+        
+        Route::get("c/evento/{evento}/reservas_inscripciones",'controladorFilRe')->name("controlador.IR_Fil_Reserva");
+        Route::get("con/evento/{evento}/reservas_inscripciones",'controladorFilIns')->name("controlador.IR_Fil_Ins");
+        Route::get("cont/evento/{evento}/reservas_inscripciones",'controladorFilTodo')->name("controlador.IR_Fil_Todo");
+
         Route::get("/controlador/ambientes",'controladorAmbientes')->name("controlador.ambientes");
         Route::get("/controlador/{ambiente}/ambientesinfo",'controladorAmbientesInfo')->name("controlador.ambientesInfo");
     });
@@ -84,8 +91,7 @@ Route::middleware(['auth','user-role:controlador','audit'])->group(function()
     //crear un grup de eventos
 
 
-    Route::get("/controlador/evento/asistencia",[ControladorController::class, 'controladorEvento_Asistencia'])->name("controlador.evento_asistencia");
-    Route::get("/controlador/evento/certificados",[ControladorController::class, 'controladorEvento_Certificados'])->name("controlador.evento_certificados");
+
 
 });
 
