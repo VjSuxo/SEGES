@@ -15,10 +15,12 @@ class Asistencia extends Model
         'participante_id',
     ];
 
-    public function participantes()
+    public function participante()
     {
         return $this->belongsTo(Participante::class);
     }
+
+
 
     // Relación de asistencias con evento
     public function evento()

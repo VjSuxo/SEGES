@@ -76,7 +76,7 @@ Route::middleware(['auth','user-role:controlador','audit'])->group(function()
         Route::get("/controlador/evento/{evento}/horario", 'controladorEvento_Horario')->name("controlador.evento_horario");
         Route::get("/controlador/evento/{evento}asistencia",'controladorEvento_Asistencia')->name("controlador.evento_asistencia");
         Route::get("/controlador/evento/{evento}/certificados",'controladorEvento_Certificados')->name("controlador.evento_certificados");
-        
+
         Route::get("c/evento/{evento}/reservas_inscripciones",'controladorFilRe')->name("controlador.IR_Fil_Reserva");
         Route::get("con/evento/{evento}/reservas_inscripciones",'controladorFilIns')->name("controlador.IR_Fil_Ins");
         Route::get("cont/evento/{evento}/reservas_inscripciones",'controladorFilTodo')->name("controlador.IR_Fil_Todo");
@@ -85,8 +85,7 @@ Route::middleware(['auth','user-role:controlador','audit'])->group(function()
         Route::get("/controlador/{ambiente}/ambientesinfo",'controladorAmbientesInfo')->name("controlador.ambientesInfo");
     });
 
-
-    Route::get("/controlador/ambientes",[ControladorController::class, 'controladorAmbientes'])->name("controlador.ambientes");
+    Route::get("certificado",[ControladorController::class, 'generarPDF'])->name("controlador.GenerarPDF");
 
     //crear un grup de eventos
 

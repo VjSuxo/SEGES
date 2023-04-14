@@ -11,10 +11,7 @@ class Tema extends Model
     protected $table = 'temas';
     protected $fillable = ['nombre', 'descripcion', 'hora_inicio', 'hora_fin', 'evento_id', 'expositor_id'];
 
-    public function asistencias()
-    {
-        return $this->hasMany(AsistenciaTema::class);
-    }
+
 
     public function evento()
     {

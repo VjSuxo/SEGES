@@ -18,6 +18,16 @@ class Participante extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function asistencia()
+    {
+        return $this->belongsTo(Asistencia::class);
+    }
+
+    public function asistencias()
+    {
+        return $this->hasMany(Asistencia::class);
+    }
+
     public function eventoParticipante()
     {
         return $this->belongsTo(eventoParticipante::class);

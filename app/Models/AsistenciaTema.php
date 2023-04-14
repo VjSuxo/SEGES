@@ -9,3 +9,4 @@ class AsistenciaTema extends Model
 {
     protected $table = 'asistencia_tema';
 }
+

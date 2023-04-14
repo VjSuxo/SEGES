@@ -46,6 +46,11 @@ class Evento extends Model
     {
         return $this->hasMany(eventoParticipante::class);
     }
+    public function asistencias()
+    {
+        return $this->hasMany(Asistencia::class);
+    }
+
 
 
 }

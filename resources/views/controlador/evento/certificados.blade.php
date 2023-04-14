@@ -11,7 +11,7 @@
             </div>
           </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('controlador.evento_reservas_inscripcion',$evento->id) }} ">Reservas | Inscripciones</a>
+              <a class="nav-link" href="{{ route('controlador.evento_ResIns',$evento->id) }} ">Reservas | Inscripciones</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ route('controlador.evento_asistencia',$evento->id) }}">Asistencia</a>
@@ -32,7 +32,7 @@
                     <th scope="col">Apellido</th>
                     <th scope="col">Fecha Nacimiento</th>
                     <th scope="col">Correo</th>
-                    <th scope="col">Genero</th>
+                    <th scope="col"> <a href="{{ route('controlador.GenerarPDF') }}"> Oli</a> </th>
                   </tr>
                 </thead>
                 <tbody>

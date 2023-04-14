@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('asistencias', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('tema_id');
-            $table->foreign('tema_id')->references('id')->on('temas');
+            $table->unsignedBigInteger('evento_id');
+            $table->foreign('evento_id')->references('id')->on('eventos');
             $table->unsignedBigInteger('participante_id');
             $table->foreign('participante_id')->references('id')->on('participantes');
             $table->boolean('asistio')->default(false);

@@ -11,7 +11,7 @@
             </div>
           </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('controlador.evento_reservas_inscripcion',$evento->id) }} ">Reservas | Inscripciones</a>
+              <a class="nav-link" href="{{ route('controlador.evento_ResIns',$evento->id) }} ">Reservas | Inscripciones</a>
             </li>
             <li class="nav-item">
               <a class="nav-link activado" href="{{ route('controlador.evento_asistencia',$evento->id) }}">Asistencia</a>
@@ -26,42 +26,20 @@
                 <thead>
                   <tr>
                     <th scope="col">CI</th>
-                    <th scope="col">Role</th>
-                    <th scope="col">Nombre</th>
+                    <th scope="col">Nombra</th>
                     <th scope="col">Apellido</th>
-                    <th scope="col">Fecha Nacimiento</th>
-                    <th scope="col">Correo</th>
-                    <th scope="col">Genero</th>
+                    <th scope="col">Asistencia</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>controlador</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>2000</td>
-                    <td>@mdo</td>
-                    <td>Desconocido</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>usuario</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>2000</td>
-                    <td>@mdo</td>
-                    <td>Desconocido</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>admin</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>2000</td>
-                    <td>@mdo</td>
-                    <td>Desconocido</td>
-                  </tr>
+                  @foreach ( $evento->asistencias as $asistencia )
+                    <tr>
+                        <th scope="row"> {{ $asistencia->participante->usuario->id }} </th>
+                        <td> {{ $asistencia->participante->usuario->name }} </td>
+                        <td> {{ $asistencia->participante->usuario->apellido_Pat }} {{ $asistencia->participante->usuario->apellido_Mat }} </td>
+                        <td> {{ $asistencia->asistio }} </td>
+                    </tr>
+                  @endforeach
                 </tbody>
               </table>
         </div>
