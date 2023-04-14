@@ -23,11 +23,11 @@
         </div>
 
         <div class="container General">
+          <a class="btn btn-primary" href="{{ route('controlador.GenerarPDF') }}"> Generar Certificados </a>
             <table class="table">
                 <thead>
                   <tr>
                     <th scope="col">CI</th>
-                    <th scope="col">Role</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Apellido</th>
                     <th scope="col">Fecha Nacimiento</th>
@@ -36,24 +36,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>controlador</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>2000</td>
-                    <td>@mdo</td>
-                    <td>Desconocido</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>usuario</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>2000</td>
-                    <td>@mdo</td>
-                    <td>Desconocido</td>
-                  </tr>
+     
                   <tr>
                     <th scope="row">3</th>
                     <td>admin</td>
