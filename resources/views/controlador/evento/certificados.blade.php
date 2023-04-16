@@ -32,11 +32,11 @@
                     <th scope="col">Apellido</th>
                     <th scope="col">Fecha Nacimiento</th>
                     <th scope="col">Correo</th>
-                    <th scope="col"> <a href="{{ route('controlador.GenerarPDF') }}"> Oli</a> </th>
+
                   </tr>
                 </thead>
                 <tbody>
-     
+
                   <tr>
                     <th scope="row">3</th>
                     <td>admin</td>
@@ -44,7 +44,7 @@
                     <td>Otto</td>
                     <td>2000</td>
                     <td>@mdo</td>
-                    <td>Desconocido</td>
+                    <th scope="col"> <a href="{{ route('controlador.GenerarPDF') }}"> Oli</a> </th>
                   </tr>
                 </tbody>
               </table>

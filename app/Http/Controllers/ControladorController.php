@@ -97,6 +97,7 @@ class ControladorController extends Controller
 
     public function controladorEvento_Certificados(Evento $evento)
     {
+
         return view('controlador/evento/certificados',['evento' => $evento]);
     }
 
