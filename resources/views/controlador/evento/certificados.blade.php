@@ -17,35 +17,36 @@
               <a class="nav-link" href="{{ route('controlador.evento_asistencia',$evento->id) }}">Asistencia</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link activado" href="{{ route('controlador.evento_certificados',$evento->id) }}">Certificados</a>
+              <a class="nav-link activado" href="{{ route('controlador.evento_certificados',['evento' => $evento->id]) }}">Certificados</a>
             </li>
           </ul>
         </div>
 
         <div class="container General">
-          <a class="btn btn-primary" href="{{ route('controlador.GenerarPDF') }}"> Generar Certificados </a>
+          <a class="btn btn-primary" href="{{ route('controlador.cargarPDF',$evento->id) }}"> Cargar Certificados </a>
+          <a class="btn btn-primary" href="{{ route('controlador.enviarPDF',$evento->id) }}"> Enviar Certificados </a>
             <table class="table">
                 <thead>
                   <tr>
                     <th scope="col">CI</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Apellido</th>
-                    <th scope="col">Fecha Nacimiento</th>
                     <th scope="col">Correo</th>
-
+                    <th scope="col">Asistencias</th>
+                    <th scope="col">Certificado</th>
                   </tr>
                 </thead>
                 <tbody>
-
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>admin</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>2000</td>
-                    <td>@mdo</td>
-                    <th scope="col"> <a href="{{ route('controlador.GenerarPDF') }}"> Oli</a> </th>
-                  </tr>
+                    @foreach ( $evento->asistencias as $asistencias )
+                        <tr>
+                            <th scope="row"> {{ $asistencias->participante->usuario->id }} </th>
+                            <td> {{ $asistencias->participante->usuario->name }} </td>
+                            <td> {{ $asistencias->participante->usuario->apellido_Pat }} {{ $asistencias->participante->usuario->apellido_Mat }} </td>
+                            <td>{{ $asistencias->participante->usuario->email }}</td>
+                            <td>{{ $asistencias->asistio }}</td>
+                            <th scope="col"> <a href="{{ route('controlador.GenerarPDF', ['usuario' => $asistencias->participante->usuario->id, 'evento' => $evento->id] ) }}"> Oli</a> </th>
+                      </tr>
+                    @endforeach
                 </tbody>
               </table>
         </div>

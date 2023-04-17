@@ -17,10 +17,9 @@
         <div class="container-fluid text-center">
             <h1>CERTIFICADO DE PARTICIPACIÓN</h1>
             <p class="certifica">Se certifica que:</p>
-            <h2>Kriakemor</h2>
-            <p>ha participado en el curso de:</p>
-            <h2 class="curso">Laravel</h2>
-            <p>con una duración de 10 horas.</p>
+            <h2> {{ $usuario->name }} </h2>
+            <p>ha participado en el {{ $evento->tipo }} de:</p>
+            <h2 class="curso"> {{ $evento->nombre }} </h2>
             <div class="signature">
                 <p>Firma del Director del Curso</p>
                 <img src="">

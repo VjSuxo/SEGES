@@ -85,8 +85,9 @@ Route::middleware(['auth','user-role:controlador','audit'])->group(function()
         Route::get("/controlador/{ambiente}/ambientesinfo",'controladorAmbientesInfo')->name("controlador.ambientesInfo");
     });
 
-    Route::get("certificado",[ControladorController::class, 'generarPDF'])->name("controlador.GenerarPDF");
-
+    Route::get('/{usuario}/{evento}/certificado',[ControladorController::class, 'generarPDF'])->name("controlador.GenerarPDF");
+    Route::get('{evento}/certificado',[ControladorController::class, 'enviarPDF'])->name("controlador.enviarPDF");
+    Route::get('e/{evento}/certificados',[ControladorController::class, 'cargarPDF'])->name("controlador.cargarPDF");
     //crear un grup de eventos
 
 

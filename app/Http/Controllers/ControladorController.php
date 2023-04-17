@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Dompdf\Dompdf;
 
-use App\Models\Users;
+use App\Mail\DemoEmail;
+
+use App\Models\User;
 use App\Models\Evento;
 use App\Models\Controlador;
+use App\Models\Certificado;
 use App\Models\Participante;
 use App\Models\Ambiente;
 use App\Models\Asistencia;
@@ -15,7 +18,10 @@ use App\Models\Reserva;
 use App\Models\eventoParticipante;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
+
+use Carbon\Carbon;
 class ControladorController extends Controller
 {
     public function controladorHome()
@@ -98,7 +104,18 @@ class ControladorController extends Controller
     public function controladorEvento_Certificados(Evento $evento)
     {
 
-        return view('controlador/evento/certificados',['evento' => $evento]);
+
+    $tema = Evento::with('temas')->find($evento->id);
+    $tema = Evento::with('temas')->find($evento->id);
+    $tema = count($tema->temas);
+    $evento = Evento::with(['asistencias' => function ($query) use ($tema){
+            //return $tema;
+            $query->where('asistencias.asistio', '=', $tema);
+            //return $tema;
+            $query->with(['participante', 'participante.usuario']);
+        }])->find($evento->id);
+        //return $evento;
+    return view('controlador/evento/certificados',['evento' => $evento]);
     }
 
     public function controladorEvento_Reservas_Inscrip(Evento $evento)
@@ -133,13 +150,57 @@ class ControladorController extends Controller
         return view('controlador/evento/reservas_inscripciones',['evento'=>$evento]);
     }
 
-    public function generarPDF()
+
+    public function cargarPDF(Evento $evento)
     {
+        $tema = Evento::with('temas')->find($evento->id);
+        $tema = Evento::with('temas')->find($evento->id);
+        $tema = count($tema->temas);
+        $evento = Evento::with(['asistencias' => function ($query) use ($tema){
+                //return $tema;
+                $query->where('asistencias.asistio', '=', $tema);
+                //return $tema;
+                $query->with(['participante', 'participante.usuario']);
+            }])->find($evento->id);
+            //return $evento;
+        foreach( $evento->asistencias as $asistencias ){
+            Certificado::create([
+                'fecha' => now(),
+                'participante_id' =>  $asistencias->participante->id,
+                'evento_id' => $evento->id,
+            ]);
+
+        }
+        return view('controlador/evento/certificados',['evento' => $evento]);
+    }
+    public function enviarPDF(Evento $evento)
+    {
+        $tema = Evento::with('temas')->find($evento->id);
+        $tema = Evento::with('temas')->find($evento->id);
+        $tema = count($tema->temas);
+        $evento = Evento::with(['asistencias' => function ($query) use ($tema){
+                //return $tema;
+                $query->where('asistencias.asistio', '=', $tema);
+                //return $tema;
+                $query->with(['participante', 'participante.usuario']);
+            }])->find($evento->id);
+            return $evento;
+        foreach( $evento->asistencias as $asistencias ){
+            $dompdf = new Dompdf();
+            $pdf->loadHtml(view('certificado', [ 'usuario'=>$usuario , 'evento'=>$evento] ));
+            $pdf->setPaper('A4', 'landscape');
+            $pdf->render();
+          return $pdf->stream();
+        }
+    }
+    public function generarPDF(User $usuario,Evento $evento)
+    {
+
     // Obtener los datos que se utilizarán en la vista
     //$data = [...];
 
     // Crear una nueva instancia de Dompdf
-    //$dompdf = new Dompdf();
+  //  $dompdf = new Dompdf();
 
     // Renderizar la vista en HTML y cargarla en Dompdf
     //$html = view('pdf', compact('data'))->render();
@@ -157,12 +218,32 @@ class ControladorController extends Controller
    //     'edad' => 25,
    // ];
 
-  //  $pdf = new Dompdf();
-  //  $pdf->loadHtml(view('certificado', compact('data')));
-  //  $pdf->setPaper('A4', 'landscape');
-  //  $pdf->render();
-  //  return $pdf->stream();
-  return view('certificado');
+    $pdf = new Dompdf();
+
+    $options = $pdf->getOptions();
+    $options->setIsRemoteEnabled(true);
+    $pdf->setOptions($options);
+
+
+    $css = file_get_contents(public_path('css/style_certificado.css'));
+
+    $pdf->loadHtml(view('certificado', [ 'usuario'=>$usuario , 'evento'=>$evento]));
+    $pdf->loadHtml('<style>' . $css . '</style>' . view('certificado', [ 'usuario'=>$usuario , 'evento'=>$evento]));
+
+    $pdf->setPaper('A4', 'landscape');
+    $pdf->render();
+    //$pdf = $pdf->output();
+    //$pdf_content =
+    ///$pdfName = 'archivo.pdf';
+
+$mail = new DemoEmail($pdf->output(), 'archivo.pdf');
+
+Mail::to('correo_destino@example.com')->send($mail);
+    return 'Email sent successfully.';
+
+
+    //return $pdf->stream('archivo.pdf');
+  return view('controlador/evento/certificados',['evento' => $evento]);
     }
 
 
