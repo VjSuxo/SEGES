@@ -15,11 +15,12 @@
 
     <div class="">
         <div class="container-fluid text-center">
-            <h1>CERTIFICADO DE PARTICIPACIÓN</h1>
+            <h1>CERTIFICADO DE FINALIZACIÓN</h1>
+            <h2 class="curso"> {{ $evento->nombre }} </h2>
             <p class="certifica">Se certifica que:</p>
             <h2> {{ $usuario->name }} </h2>
             <p>ha participado en el {{ $evento->tipo }} de:</p>
-            <h2 class="curso"> {{ $evento->nombre }} </h2>
+
             <div class="signature">
                 <p>Firma del Director del Curso</p>
                 <img src="">

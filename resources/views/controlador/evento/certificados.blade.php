@@ -23,8 +23,7 @@
         </div>
 
         <div class="container General">
-          <a class="btn btn-primary" href="{{ route('controlador.cargarPDF',$evento->id) }}"> Cargar Certificados </a>
-          <a class="btn btn-primary" href="{{ route('controlador.enviarPDF',$evento->id) }}"> Enviar Certificados </a>
+
             <table class="table">
                 <thead>
                   <tr>
@@ -44,7 +43,7 @@
                             <td> {{ $asistencias->participante->usuario->apellido_Pat }} {{ $asistencias->participante->usuario->apellido_Mat }} </td>
                             <td>{{ $asistencias->participante->usuario->email }}</td>
                             <td>{{ $asistencias->asistio }}</td>
-                            <th scope="col"> <a href="{{ route('controlador.GenerarPDF', ['usuario' => $asistencias->participante->usuario->id, 'evento' => $evento->id] ) }}"> Oli</a> </th>
+                            <th scope="col"> <a href="{{ route('controlador.GenerarPDF', ['usuario' => $asistencias->participante->usuario->id, 'evento' => $evento->id] ) }}"> Ver</a> </th>
                       </tr>
                     @endforeach
                 </tbody>

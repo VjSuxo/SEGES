@@ -217,33 +217,37 @@ class ControladorController extends Controller
    //     'apellido' => 'Pérez',
    //     'edad' => 25,
    // ];
+   $evento = Evento::with('temas')->find($evento->id);
+   return $evento;
+   //
+  //  $pdf = new Dompdf();
 
-    $pdf = new Dompdf();
-
-    $options = $pdf->getOptions();
-    $options->setIsRemoteEnabled(true);
-    $pdf->setOptions($options);
+    //$options = $pdf->getOptions();
+    //$options->setIsRemoteEnabled(true);
+    //$pdf->setOptions($options);
 
 
-    $css = file_get_contents(public_path('css/style_certificado.css'));
+    //$css = file_get_contents(public_path('css/style_certificado.css'));
 
-    $pdf->loadHtml(view('certificado', [ 'usuario'=>$usuario , 'evento'=>$evento]));
-    $pdf->loadHtml('<style>' . $css . '</style>' . view('certificado', [ 'usuario'=>$usuario , 'evento'=>$evento]));
-
-    $pdf->setPaper('A4', 'landscape');
-    $pdf->render();
+    //$pdf->loadHtml(view('certificado', [ 'usuario'=>$usuario , 'evento'=>$evento]));
+    //$pdf->loadHtml('<style>' . $css . '</style>' . view('certificado', [ 'usuario'=>$usuario , 'evento'=>$evento]));
+    //$pdfName = 'archivo.pdf';
+    //$pdf->setPaper('A4', 'landscape');
+    //$p/df->render();
     //$pdf = $pdf->output();
     //$pdf_content =
-    ///$pdfName = 'archivo.pdf';
 
-$mail = new DemoEmail($pdf->output(), 'archivo.pdf');
 
-Mail::to('correo_destino@example.com')->send($mail);
-    return 'Email sent successfully.';
+    //re/turn view('controlador/evento/certificados',['evento' => $evento]);
+    //return $evento;
+//$mail = new DemoEmail($pdf->output(), 'archivo.pdf');
+
+//Mail::to('correo_destino@example.com')->send($mail);
+  //  return 'Email sent successfully.';
 
 
     //return $pdf->stream('archivo.pdf');
-  return view('controlador/evento/certificados',['evento' => $evento]);
+
     }
 
 
