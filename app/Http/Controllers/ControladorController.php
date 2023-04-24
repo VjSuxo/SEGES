@@ -86,29 +86,16 @@ class ControladorController extends Controller
 
     public function controladorAmbientesInfo(Ambiente $ambiente)
     {
-      //return $ambiente;
-        // , 'infraestructura.tema'  :with('infraestructura.temas')->
         $infra = Ambiente::with('infraestructuras.tema', 'infraestructuras.reservas')->find($ambiente->id);
-       // return $infra;
-        //return $infraestructura;
-
-        //$ambiente = Ambiente::find($ambiente->id);
-        //$infraestructuras = $ambiente->infraestructuras;
-        //$reservas = Reserva::get();
-
-
-
         return view('/controlador/ambientesinfo',['informacion'=>$infra]);
     }
 
     public function controladorEvento_Certificados(Evento $evento)
     {
-
-
-    $tema = Evento::with('temas')->find($evento->id);
-    $tema = Evento::with('temas')->find($evento->id);
-    $tema = count($tema->temas);
-    $evento = Evento::with(['asistencias' => function ($query) use ($tema){
+        $tema = Evento::with('temas')->find($evento->id);
+        $tema = Evento::with('temas')->find($evento->id);
+        $tema = count($tema->temas);
+         $evento = Evento::with(['asistencias' => function ($query) use ($tema){
             //return $tema;
             $query->where('asistencias.asistio', '=', $tema);
             //return $tema;
@@ -218,7 +205,7 @@ class ControladorController extends Controller
    //     'edad' => 25,
    // ];
    $evento = Evento::with('temas')->find($evento->id);
-   return $evento;
+   return view('controlador/verCertificado',['evento' => $evento, 'usuario' => $usuario]);
    //
   //  $pdf = new Dompdf();
 
@@ -248,6 +235,33 @@ class ControladorController extends Controller
 
     //return $pdf->stream('archivo.pdf');
 
+    }
+
+    public function desactivarRes(Evento $evento )
+    {
+        $evento = Evento::find($evento->id);
+        $evento->estado = 1;
+        $evento->save();
+        $evento = Evento::with('eventoParticipante', 'eventoParticipante.participante', 'eventoParticipante.participante.usuario')->find($evento->id);
+        return view('controlador/evento/reservas_inscripciones',['evento'=>$evento]);
+    }
+    public function desactivarIns(Evento $evento )
+    {
+        $evento = Evento::find($evento->id);
+        $evento->estado = 2;
+        $evento->save();
+        $evento = Evento::with('eventoParticipante', 'eventoParticipante.participante', 'eventoParticipante.participante.usuario')->find($evento->id);
+        return view('controlador/evento/reservas_inscripciones',['evento'=>$evento]);
+    }
+
+    public function activarIns(Evento $evento )
+    {
+
+        $evento = Evento::find($evento->id);
+        $evento->estado = 1;
+        $evento->save();
+        $evento = Evento::with('eventoParticipante', 'eventoParticipante.participante', 'eventoParticipante.participante.usuario')->find($evento->id);
+        return view('controlador/evento/reservas_inscripciones',['evento'=>$evento]);
     }
 
 

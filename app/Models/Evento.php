@@ -13,6 +13,9 @@ class Evento extends Model
         'descripcion',
         'tipo',
         'controlador_id',
+        'url',
+        'estado',
+        'user_id'
     ];
 
     public function certificado()
@@ -28,6 +31,11 @@ class Evento extends Model
     public function temas()
     {
         return $this->hasMany(Tema::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
 

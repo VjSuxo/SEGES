@@ -11,6 +11,7 @@ class Participante extends Model
     protected $fillable = [
         'nivel_estudios',
         'profesion',
+        'usuario_id',
     ];
 
     public function usuario()

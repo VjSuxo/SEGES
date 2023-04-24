@@ -29,9 +29,21 @@ Auth::routes(['verify' => true]);
 // Route User
 Route::middleware(['auth','user-role:user','verified','audit'])->group(function()
 {
+
+    Route::controller(UserController::class)->group(function(){
+        Route::get("/user/evento/{evento}/index", 'userEventosIndex')->name("user.evento-index");
+        Route::get("/user/evento/{evento}/material", 'userEventosMaterial')->name("user.evento-material");
+        Route::post('/','crearComentario')->name('user.crearComentario');
+        Route::post('/','storeEvento')->name('user.storeEvento');
+        //Crear EVENTO
+        Route::get("/user/evento/crearEvento", 'crearEvento')->name("user.crearEvento");
+
+    });
+
+
     Route::get("/user/home",[HomeController::class, 'userHome'])->name("user.home");
     Route::get("/user/misEventos",[UserController::class, 'userEventos'])->name("user.misEventos");
-    Route::get("/user/evento/index",[UserController::class, 'userEventosIndex'])->name("user.evento-index");
+
     Route::get("/home",[HomeController::class, 'userHome'])->name("home");
 });
 // Route Expositor
@@ -73,6 +85,9 @@ Route::middleware(['auth','user-role:controlador','audit'])->group(function()
         Route::get("/controlador/evento/{eve}/index",'controladorEventoIndex')->name("controlador.evento");
         Route::get("/controlador/evento/{evento}/pp",'controladorEventoInformacion')->name("controlador.eventoInformacion");
         Route::get("/controlador/evento/{evento}/reservas_inscripciones",'controladorEvento_Reservas_Inscrip')->name("controlador.evento_ResIns");
+            Route::get("/{evento}/desactivarRes",'desactivarRes')->name("controlador.desRes");
+            Route::get("/{evento}/desactivarIns",'desactivarIns')->name("controlador.desIns");
+            Route::get("/{evento}/activarIns",'activarIns')->name("controlador.activarIns");
         Route::get("/controlador/evento/{evento}/horario", 'controladorEvento_Horario')->name("controlador.evento_horario");
         Route::get("/controlador/evento/{evento}asistencia",'controladorEvento_Asistencia')->name("controlador.evento_asistencia");
         Route::get("/controlador/evento/{evento}/certificados",'controladorEvento_Certificados')->name("controlador.evento_certificados");

@@ -28,6 +28,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'anio_Nac',
         'genero',
         'informacion',
+
     ];
 
     /**
@@ -70,6 +71,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function participante()
     {
         return $this->belongsTo(Participante::class, 'id_participante');
+    }
+
+    public function eventos()
+    {
+        return $this->hasMany(Evento::class);
     }
 
 

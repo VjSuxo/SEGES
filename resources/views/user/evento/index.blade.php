@@ -1,105 +1,134 @@
-<x-layouts.app >
-    @vite(['resources/css/style_usuario.css'])
-    <div class="navegadorUsuario">
-        <ul class="nav nav-tabs">
-          <li class="nav-item">
-            <div class="activado">
-              <a class="nav-link" aria-current="page" href="{{  route('user.home') }}">Perfil</a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{  route('user.misEventos') }}">Mis Eventos</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" href="">Crear evento</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="">Gestionar evento</a>
-          </li>
-        </ul>
-    </div>
-    <div class="cuerpo">
-        <div class="tarjeta">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <img src="/storage/icons/icon_user.png" class="bordeImg img-thumbnail rounded-start" alt="">
-                    <div class="contenedor-card">
-                        <ul class="lista">
-                            <li class="lista-Active">
-                                <h3>Mi Perfil</h3>
-                            </li>
-                            <li>
-                                <h3>Fotografia</h3>
-                            </li>
-                            <li>
-                                <h3>Seguridad Cuenta</h3>
-                            </li>
-                            <li>
-                                <h3>Cerrar Sesion</h3>
-                            </li>
+<x-layouts.app>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    @vite(['resources/css/style_controlador.css'])
+    <div class="contenedor">
+        <div class="navegadorUsuario">
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <div class="">
+                  <a class="nav-link" aria-current="page" href="{{  route('expositor.home') }}">Perfil</a>
+                </div>
+              </li>
+              <li class="nav-item activado">
+                <a class="nav-link" href="{{  route('user.misEventos') }}">Mis Eventos</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="">Crear evento</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="">Gestionar evento</a>
+              </li>
+            </ul>
+        </div>
+
+        <div class="contaniner General">
+
+            <div class="parent">
+                <div class="div1"> </div>
+                <div class="div2">
+                    <div class="contenido">
+                        <h1> {{ $evento->nombre }} </h1>
+                        <p> {{ $evento->descripcion }} </p>
+
+                  </div>
+                </div>
+                <div class="div3">
+                    <div class="card" style="width: 20rem;">
+                        <img src="/storage/imagenes/fondo-Evento1.jpg" class="card-img-top" alt="foto del evento">
+                        <div class="card-body">
+                          <div class="cb-Btn position-relative">
+                            <a href=" {{ route('user.evento-material',$evento->id) }} " class=" position-absolute top-100 start-50 translate-middle mt-1 btn btn-primary">Ver Material</a>
+                          </div>
+                          <div class="listaG border">
+                            <h5>Detalle :</h5>
+                            <ul class="list-group list-group-flush">
+                              <li class="list-group-item lista">Cantidad Clases : {{ count( $evento->temas ) }} </li>
+                              <li class="list-group-item lista">Fecha Inicio : {{  $evento->temas[0]->fecha  }} </li>
+                              <li class="list-group-item lista">Fecha Fin : {{  $evento->temas[count( $evento->temas )-1]->fecha  }} </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="div4">
+                    <div class="contenido">
+                        <div id="miCarrusel" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                              @foreach ($evento->temas as $index => $tema)
+                                  <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                                    <div class="card mb-3" style="max-width: 840px;">
+                                        <div class="row g-0">
+                                          <div class="col-md-4">
+                                            <img src="/storage/icons/icon_Usuario.png" class="img-fluid rounded-start" alt="...">
+                                          </div>
+                                          <div class="col-md-8">
+                                            <div class="card-body">
+                                                <h2 class="card-title">{{ $tema->expositor->usuario->name }}</h2>
+                                                <p class="card-text">{{ $tema->expositor->biografia }}</p>
+                                                <p class="card-text"> Email : {{ $tema->expositor->usuario->email }}</p>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                  </div>
+                              @endforeach
+                            </div>
+                            <a class="carousel-control-prev" href="#miCarrusel" role="button" data-slide="prev">
+                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                              <span class="sr-only">Anterior</span>
+                            </a>
+                            <a class="carousel-control-next" href="#miCarrusel" role="button" data-slide="next">
+                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                              <span class="sr-only">Siguiente</span>
+                            </a>
+                          </div>
+                    </div>
+                </div>
+
+                <div class="div5">
+                    <div class="cuerpo">
+                            <h1>Contenido</h1>
+                            <ol class="list-group list-group-numbered">
+                                @foreach ( $evento->temas as $tema )
+                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                        <div class="ms-2 me-auto">
+                                        <div class="fw-bold"> {{ $tema->nombre }} </div>
+                                        {{ $tema->expositor->usuario->name }} {{ $tema->expositor->usuario->apellido_Pat }} {{ $tema->expositor->usuario->apellido_Mat }}
+                                        </div>
+                                        <span class=" ">Fecha : {{ $tema->fecha }} <br> Hora: {{ $tema->hora_inicio }} </span>
+                                    </li>
+                                @endforeach
+                            </ol>
+                    </div>
+                </div>
+
+                <div class="div6">
+                    <h1>Comentarios</h1>
+                    <div class="comentarios">
+                        <ul class="list-group">
+                            @foreach ( $evento->comentario as $comentario )
+                                <li class="list-group-item">
+                                    {{ $comentario->participante->usuario->name }} :    {{ $comentario->contenido }}
+                                 </li>
+                            @endforeach
                         </ul>
                     </div>
-
+                    <form action=" {{ route('user.crearComentario') }} "  method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Comentario" aria-label="Recipient's username" aria-describedby="button-addon2" name="comentario" id="comentario">
+                            <textarea name="event" id="event" cols="30" rows="10" style="display: none"> {{ $evento->id }} </textarea>
+                            <button class="btn btn-outline-secondary"  type="submit" id="boton-enviar" >Enviar</button>
+                          </div>
+                    </form>
                 </div>
-              </div>
-        </div>
-        <div class="informacion">
-            <div class="titulo">
-                <h1 class="elemento">CONGRESO HISTORIA</h1>
             </div>
 
-            <div class="contenido">
-            <div class="card text-center">
-  <div class="card-header">
-    <ul class="nav nav-tabs card-header-tabs">
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="true" href="#">Presentacion</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Programa</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled">Inscripcion</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled">Contacto</a>
-      </li>
-    </ul>
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga accusamus aspernatur deserunt unde sed eos explicabo alias</h5>
-    <div class="miniLista d-flex align-items-start" >
-        <ul>
-            <li class="d-flex align-items-start">Fecha Inicio : 16/11/2021</li>
-            <li class="d-flex align-items-start">Fecha Fin : 19/11/2021</li>
-            <li class="d-flex align-items-start">Hora Inicio : 8:00 am</li>
-            <li class="d-flex align-items-start">Lugar :Universidad</li>
-        </ul>
-    </div>
-    <div class="portada">
-        <img src="/storage/imagenes/evento1.jpg" class="img-fluid" alt="">
-    </div>
-    <br>
-    <div class="informacionContenido">
-        <p class="text-start">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia laboriosam provident cumque libero sed illum ab sint enim atque, distinctio error maiores quo magnam ratione. Dolores dolor minus repellat doloribus?
-        Nobis iusto repellat voluptate! Excepturi qui similique sequi facilis, neque iste praesentium incidunt, laudantium, ex ut dolores maiores aut eos delectus porro soluta explicabo veniam? Exercitationem voluptates iste similique expedita.
-        Laudantium qui quis odio, dolor itaque culpa iusto, nostrum aperiam amet excepturi veniam nobis soluta, quo provident cumque! Aspernatur ipsa provident dolores temporibus beatae incidunt alias vero tempore deserunt ex.
-        Asperiores fugit eos adipisci debitis qui non possimus, modi odit, in iste sint labore veniam beatae cupiditate aperiam voluptate itaque quis! Maxime nostrum eligendi earum quae architecto modi, exercitationem numquam!
-        Et nihil nulla similique dolorem, voluptatibus sequi delectus necessitatibus quos id ea nemo minus sapiente voluptatum temporibus ratione culpa non. Qui amet minima porro inventore architecto consequuntur quidem laudantium accusamus.</p>
-    </div>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-            </div>
-
-            
-  
-
-
-          
-
         </div>
-    </div>
 
+      </div>
 
-</x-layouts>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</x-layouts.app>

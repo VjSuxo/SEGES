@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Comentario;
+use App\Models\Participante;
+use App\Models\Expositor;
+use App\Models\Evento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\User\StoreRequest;
 use App\Http\Requests\User\UpdateRequest;
 
@@ -20,16 +25,45 @@ class UserController extends Controller
 
     public function userEventos()
     {
-        return view('/user/misEventos');
+        $user =  Auth::id();
+        $participanteId = Participante::where('usuario_id','=', $user)->first();
+
+        //$eventos = Evento::whereHas('eventoParticipante.participante', function($query) use ($participanteId) {
+        //    $query->where('id', $participanteId->id);
+       // })->get();
+
+        $eventos = Evento::whereHas('eventoParticipante.participante', function($query) use ($participanteId) {
+            $query->where('id', $participanteId->id)->where('inscrito', 1);
+       })->get();
+
+
+        //return $eventos;
+        return view('/user/misEventos',['eventos'=>$eventos]);
     }
 
-    public function userEventosIndex()
+    public function userEventosIndex(Evento $evento)
     {
-        return view('/user/evento/index');
+        $evento = Evento::with('temas' )->find($evento->id);
+      //  return $evento;
+        return view('/user/evento/index',['evento'=>$evento]);
+    }
+
+    public function userEventosMaterial(Evento $evento)
+    {
+        $evento = Evento::with('temas' , 'temas.contenido' )->find($evento->id);
+      //  return $evento->temas[0]->contenido;
+        return view('/user/evento/material',['evento'=>$evento]);
     }
 
     /**
      * Show the form for creating a new resource.
+     *
+     *
+     *  Gestion evento
+     * $user =  Auth::id();
+        *$user = User::with('participante')->find($user);
+        *return $user;
+     *
      */
     public function create()
     {
@@ -57,7 +91,7 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(User $user)
-    {   
+    {
         return view('admin.edit.user.show',compact('user'));
     }
 
@@ -70,6 +104,26 @@ class UserController extends Controller
         return redirect()->route('users.index');
     }
 
+    public function crearComentario(Request $request)
+    {
+        //return Auth::id();
+        $evento = Evento::find($request->event);
+        $participanteId = Participante::where('usuario_id','=',Auth::id())->first();
+        //return $evento->comentario;
+        //return $request;
+         Comentario::create([
+            'contenido' => $request->comentario,
+            'participante_id'=>$participanteId->id,
+            'evento_id' => $evento->id,
+         ]);
+         //return $request;
+        // return Comentario::get();
+         $evento = Evento::with('temas' )->find($evento->id);
+         return back();
+
+       //  return view('/user/evento/index',['evento'=>$evento]);
+    }
+
     /**
      * Remove the specified resource from storage.
      */
@@ -78,4 +132,24 @@ class UserController extends Controller
         $user->delete();
         return redirect()->route('users.index');
     }
+
+
+
+    /**
+     * Crear Eventos
+     */
+
+    public function crearEvento()
+    {
+        $expositor = Expositor::get();
+        return view('/user/evento/crearEvento',['expositores' => $expositor]);
+    }
+
+    public function storeEvento(Request $request)
+    {
+        return $request;
+        $expositor = Expositor::get();
+        return view('/user/evento/crearEvento',['expositores' => $expositor]);
+    }
+
 }

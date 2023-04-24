@@ -3,11 +3,11 @@
     <div class="navegadorUsuario">
         <ul class="nav nav-tabs">
           <li class="nav-item">
-            <div class="activado">
+            <div class="">
               <a class="nav-link" aria-current="page" href="{{  route('user.home') }}">Perfil</a>
             </div>
           </li>
-          <li class="nav-item">
+          <li class="nav-item activado">
             <a class="nav-link" href="{{  route('user.misEventos') }}">Mis Eventos</a>
           </li>
           <li class="nav-item">
@@ -50,9 +50,7 @@
 
             <div class="row row-cols-1 row-cols-md-2 g-4">
 
-            
-  
-
+            @foreach ( $eventos as $evento )
                 <div class="col">
                     <div class="card mb-3" style="max-width: 540px;">
                         <div class="row g-0">
@@ -61,31 +59,19 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 class="card-title">Congerso de Musica</h5>
-                                    <a href="{{ route('user.evento-index')}}" class="btn">Entrar</a>
+                                    <h5 class="card-title"> {{ $evento->nombre }} </h5>
+
+                                    <a href="{{ route('user.evento-index',$evento->id)}}" class="btn">Entrar</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            @endforeach
 
-          
 
-                <div class="col">
-                    <div class="card mb-3" style="max-width: 540px;">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="/storage/icons/tarea.png" class="img-fluid rounded-start" alt="...">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">Congerso de Historia</h5>
-                                    <a href="{{ route('user.evento-index')}}" class="btn">Entrar</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+
         </div>
     </div>
 

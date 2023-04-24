@@ -74,14 +74,27 @@
                     </tbody>
                   </table>
                 <div class="botones">
-                    <div class="lado">
-                        <h4 class="subTexto">Inscripcion :</h4>
-                    <button type="button" class="btn btn-primary">Finalizar </button>
-                    </div>
+                    @if ( $evento->estado == 0 )
                     <div class="lado">
                         <h4 class="subTexto">Reserva :</h4>
-                    <button type="button" class="btn btn-primary">Finalizar </button>
+                    <a type="button" class="btn btn-primary" href="{{ route('controlador.desRes',$evento->id) }}">Finalizar </a>
                     </div>
+                    @endif
+                    @if ($evento->estado == 1 )
+                    <div class="lado">
+                        <h4 class="subTexto">Inscripcion :</h4>
+                    <a type="button" class="btn btn-primary" href="{{ route('controlador.desIns',$evento->id) }}">Finalizar </a>
+                    </div>
+                    @endif
+                    @if ($evento->estado == 2 )
+                    <div class="lado">
+                        <h4 class="subTexto">Evento en curso</h4>
+
+                    </div>
+                    <a type="button" class="btn btn-primary" href=" {{ route('controlador.activarIns',$evento->id) }}"">Activar </a>
+                    @endif
+
+
                 </div>
             </div>
 

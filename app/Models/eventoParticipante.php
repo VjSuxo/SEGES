@@ -22,6 +22,11 @@ class eventoParticipante extends Model
         return $this->belongsTo(Participante::class);
     }
 
+    public function participantes()
+    {
+        return $this->hasMany(Participante::class);
+    }
+
     public function eventos()
     {
         return $this->belongsToMany(Evento::class);

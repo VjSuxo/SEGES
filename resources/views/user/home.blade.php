@@ -11,7 +11,7 @@
             <a class="nav-link" href="{{  route('user.misEventos') }}">Mis Eventos</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="">Crear evento</a>
+              <a class="nav-link" href=" {{ route('user.crearEvento') }} ">Crear evento</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="">Gestionar evento</a>
