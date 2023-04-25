@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Evento;
+use App\Models\Expositor;
+use App\Models\Participante;
+use App\Models\eventoParticipante;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
@@ -8,7 +12,9 @@ use App\Http\Controllers\EventoController;
 use App\Http\Controllers\ControladorController;
 use App\Http\Controllers\ExpositorController;
 use  App\Http\Controllers\Admin\Admin_ImgController;
+use Illuminate\Http\Request;
 /*
+
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -20,8 +26,26 @@ use  App\Http\Controllers\Admin\Admin_ImgController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    $evento = Evento::get();
+    $expositores = Expositor::get();
+    return view('welcome', ['eventos' => $evento, 'expositoresP' => $expositores] );
+})->name('inicio');
+Route::get("/toIndex/{evento}",[UserController::class, 'registro'])->name('registro');
+
+
+Route::get('/preguntasFrecuentes', function () {
+    return view('preguntasFrecuentes');
+})->name('preguntas');
+
+Route::get('/contacto', function () {
+    return view('contacto');
+})->name('contacto');
+
+Route::get('/eventoIndex/{evento}', function (Evento $evento) {
+    //$evento = Evento::get();
+    return view('eventoIndex', ['evento' => $evento] );
+})->name('eventoIndex');
+
 
 
 Auth::routes(['verify' => true]);
@@ -31,17 +55,18 @@ Route::middleware(['auth','user-role:user','verified','audit'])->group(function(
 {
 
     Route::controller(UserController::class)->group(function(){
+        Route::get("/user",'index')->name("user.home");
         Route::get("/user/evento/{evento}/index", 'userEventosIndex')->name("user.evento-index");
         Route::get("/user/evento/{evento}/material", 'userEventosMaterial')->name("user.evento-material");
         Route::post('/','crearComentario')->name('user.crearComentario');
-        Route::post('/','storeEvento')->name('user.storeEvento');
+
         //Crear EVENTO
         Route::get("/user/evento/crearEvento", 'crearEvento')->name("user.crearEvento");
 
     });
 
 
-    Route::get("/user/home",[HomeController::class, 'userHome'])->name("user.home");
+    Route::get("/user",[UserController::class, 'index'])->name("user.home");
     Route::get("/user/misEventos",[UserController::class, 'userEventos'])->name("user.misEventos");
 
     Route::get("/home",[HomeController::class, 'userHome'])->name("home");

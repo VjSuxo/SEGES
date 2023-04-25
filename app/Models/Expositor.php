@@ -11,6 +11,7 @@ class Expositor extends Model
     protected $fillable = [
         'nombre_empresa',
         'biografia',
+        'url',
     ];
 
     public function usuario()

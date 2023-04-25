@@ -10,6 +10,7 @@ class eventoParticipante extends Model
     use HasFactory;
     protected $table = 'evento_participantes';
     protected $fillable = [
+        'id',
         'evento_id',
         'participante_id',
         'inscrito',

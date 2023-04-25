@@ -1,33 +1,20 @@
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">SEGES</a>
+      <a class="navbar-brand" href="{{ route('inicio') }}">SEGES</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+            <a class="nav-link active" aria-current="page" href=" {{ route('inicio') }} ">Inicio</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Eventos
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Tutoriales</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Conferencia</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Mesa Redonda</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Presentacion Proyectos</a></li>
-            </ul>
+
+          <li class="nav-item">
+              <a class="nav-link" href=" {{ route('preguntas') }} ">Preguntas Frecuentes</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="#">Quienes Somos</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" href="#">Contacto</a>
+              <a class="nav-link" href=" {{ route('contacto') }} ">Contacto</a>
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">
@@ -56,7 +43,9 @@
                                          document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
-
+                        @if(Auth::user()->role == 'user')
+                        <a class="dropdown-item" href="{{  route('user.misEventos') }}">Mis Eventos</a>
+                        @endif
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>

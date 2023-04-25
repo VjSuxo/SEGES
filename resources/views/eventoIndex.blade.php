@@ -2,16 +2,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     @vite(['resources/css/style_controlador.css'])
     <div class="contenedor">
-        <div class="navegadorUsuario">
-            <ul class="nav nav-tabs">
-              <li class="nav-item">
-              <li class="nav-item activado">
-                <a class="nav-link" href="{{  route('user.misEventos') }}">Mis Eventos</a>
-              </li>
-
-            </ul>
-        </div>
-
         <div class="contaniner General">
 
             <div class="parent">
@@ -25,10 +15,41 @@
                 </div>
                 <div class="div3">
                     <div class="card" style="width: 20rem;">
-                        <img src="/storage/imagenes/fondo-Evento1.jpg" class="card-img-top" alt="foto del evento">
+                        <img src=" {{ $evento->url }} " class="card-img-top" alt="foto del evento">
                         <div class="card-body">
                           <div class="cb-Btn position-relative">
-                            <a href=" {{ route('user.evento-material',$evento->id) }} " class=" position-absolute top-100 start-50 translate-middle mt-1 btn btn-primary">Ver Material</a>
+                            @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class=" position-absolute top-100 start-50 translate-middle mt-1 btn btn-primary" href="{{ route('login') }}">  Inscribete</a>
+                                </li>
+
+                            @endif
+
+                            @else
+                                @foreach ( $evento->eventoParticipante as $eventoParticipante)
+                                    @if ( $eventoParticipante->participante->usuario->id == Auth::user()->id )
+                                        @if ($eventoParticipante->inscrito == 1)
+                                        <li class="nav-item dropdown">
+                                            <a href=" {{ route('user.evento-material',$evento->id) }} " class=" position-absolute top-100 start-50 translate-middle mt-1 btn btn-primary">
+                                                    Material
+                                            </a>
+                                        </li>
+                                        @endif
+                                        @if ($eventoParticipante->inscrito == 0)
+                                        <li class="nav-item dropdown">
+                                            <a href=" {{ route('registro',$evento->id) }} " class=" position-absolute top-100 start-50 translate-middle mt-1 btn btn-primary">
+                                                    Inscribirse
+                                            </a>
+                                        </li>
+                                        @endif
+                                    @endif
+                                @endforeach
+
+
+
+                        @endguest
+
                           </div>
                           <div class="listaG border">
                             <h5>Detalle :</h5>
@@ -50,7 +71,8 @@
                                     <div class="card mb-3" style="max-width: 840px;">
                                         <div class="row g-0">
                                           <div class="col-md-4">
-                                            <img src="/storage/icons/icon_Usuario.png" class="img-fluid rounded-start" alt="...">
+
+                                            <img src=" {{ $tema->expositor->url }} " class="img-fluid rounded-start" alt="...">
                                           </div>
                                           <div class="col-md-8">
                                             <div class="card-body">

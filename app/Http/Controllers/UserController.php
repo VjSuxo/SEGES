@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Comentario;
 use App\Models\Participante;
 use App\Models\Expositor;
+use App\Models\eventoParticipante;
 use App\Models\Evento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,8 +20,20 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::get();
-        return view('admin.user.index',compact('users'));
+        $user =  Auth::id();
+        $participanteId = Participante::where('usuario_id','=', $user)->first();
+
+        //$eventos = Evento::whereHas('eventoParticipante.participante', function($query) use ($participanteId) {
+        //    $query->where('id', $participanteId->id);
+       // })->get();
+
+        $eventos = Evento::whereHas('eventoParticipante.participante', function($query) use ($participanteId) {
+            $query->where('id', $participanteId->id)->where('inscrito', 1);
+       })->get();
+
+
+        //return $eventos;
+        return view('/user/misEventos',['eventos'=>$eventos]);
     }
 
     public function userEventos()
@@ -150,6 +163,22 @@ class UserController extends Controller
         return $request;
         $expositor = Expositor::get();
         return view('/user/evento/crearEvento',['expositores' => $expositor]);
+    }
+
+    public function registro(Evento $evento)
+    {
+        $participante = Participante::where('usuario_id','=',Auth::user()->id)->first();
+        $inscribe = eventoParticipante::where('evento_id','=',$evento->id)
+        ->Where('participante_id', '=', $participante->id)
+        ->get();
+        //return $inscribe[0]->evento_id;
+        $inscribe = eventoParticipante::find($inscribe[0]->id);
+
+        $inscribe->inscrito = 1;
+
+        $inscribe->save();
+
+        return view('eventoIndex', ['evento' => $evento] );
     }
 
 }

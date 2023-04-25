@@ -3,19 +3,10 @@
     <div class="navegadorUsuario">
         <ul class="nav nav-tabs">
           <li class="nav-item">
-            <div class="">
-              <a class="nav-link" aria-current="page" href="{{  route('user.home') }}">Perfil</a>
-            </div>
-          </li>
           <li class="nav-item activado">
             <a class="nav-link" href="{{  route('user.misEventos') }}">Mis Eventos</a>
           </li>
-          <li class="nav-item">
-              <a class="nav-link" href="">Crear evento</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="">Gestionar evento</a>
-          </li>
+
         </ul>
     </div>
     <div class="cuerpo">
@@ -27,12 +18,6 @@
                         <ul class="lista">
                             <li class="lista-Active">
                                 <h3>Mi Perfil</h3>
-                            </li>
-                            <li>
-                                <h3>Fotografia</h3>
-                            </li>
-                            <li>
-                                <h3>Seguridad Cuenta</h3>
                             </li>
                             <li>
                                 <h3>Cerrar Sesion</h3>
