@@ -167,12 +167,25 @@ class UserController extends Controller
 
     public function registro(Evento $evento)
     {
+
         $participante = Participante::where('usuario_id','=',Auth::user()->id)->first();
         $inscribe = eventoParticipante::where('evento_id','=',$evento->id)
         ->Where('participante_id', '=', $participante->id)
-        ->get();
-        //return $inscribe[0]->evento_id;
-        $inscribe = eventoParticipante::find($inscribe[0]->id);
+        ->first();
+
+        if(empty($inscribe)){
+            eventoParticipante::create([
+
+            'evento_id' => $evento->id,
+            'participante_id' => $participante->id,
+            'inscrito' => 1,
+             ]);
+        }
+
+        $inscribe = eventoParticipante::where('evento_id','=',$evento->id)
+        ->Where('participante_id', '=', $participante->id)
+        ->first();
+        $inscribe = eventoParticipante::find($inscribe->id);
 
         $inscribe->inscrito = 1;
 

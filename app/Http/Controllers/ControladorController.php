@@ -47,7 +47,7 @@ class ControladorController extends Controller
     {
         $evento = Evento::with('comentario', 'comentario.participante', 'comentario.participante.usuario' ,'temas.contenido' , 'temas.expositor', 'temas.expositor.usuario')->find($eve->id);
 
-        //return  $evento->temas;
+        //return  $evento->temas[0]->id;
 
         return view('controlador/evento/index',['evento'=>$evento]);
     }

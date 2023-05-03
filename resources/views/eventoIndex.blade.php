@@ -29,24 +29,31 @@
                             @else
                                 @foreach ( $evento->eventoParticipante as $eventoParticipante)
                                     @if ( $eventoParticipante->participante->usuario->id == Auth::user()->id )
-                                        @if ($eventoParticipante->inscrito == 1)
-                                        <li class="nav-item dropdown">
-                                            <a href=" {{ route('user.evento-material',$evento->id) }} " class=" position-absolute top-100 start-50 translate-middle mt-1 btn btn-primary">
-                                                    Material
-                                            </a>
-                                        </li>
-                                        @endif
-                                        @if ($eventoParticipante->inscrito == 0)
-                                        <li class="nav-item dropdown">
-                                            <a href=" {{ route('registro',$evento->id) }} " class=" position-absolute top-100 start-50 translate-middle mt-1 btn btn-primary">
-                                                    Inscribirse
-                                            </a>
-                                        </li>
-                                        @endif
-                                    @endif
+                                         @if($eventoParticipante->inscrito == 1 )
+
+                                            <li class="nav-item dropdown">
+                                                <a href=" {{ route('user.evento-material',$evento->id) }} " class=" position-absolute top-100 start-50 translate-middle mt-1 btn btn-primary">
+                                                        Material
+                                                </a>
+                                            </li>
+                                            @endif
+                                            @if($eventoParticipante->inscrito == 0 )
+                                            <li class="nav-item dropdown">
+                                                <a href=" {{ route('registro',$evento->id) }} " class=" position-absolute top-100 start-50 translate-middle mt-1 btn btn-primary">
+                                                        Inscribirse
+                                                </a>
+                                            </li>
+                                            @endif
+
+                                            @endif
                                 @endforeach
-
-
+                                @if(empty($eventoParticipante ) )
+                                <li class="nav-item dropdown">
+                                    <a href=" {{ route('registro',$evento->id) }} " class=" position-absolute top-100 start-50 translate-middle mt-1 btn btn-primary">
+                                            Inscribirse
+                                    </a>
+                                </li>
+                                @endif
 
                         @endguest
 
